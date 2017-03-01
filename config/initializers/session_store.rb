@@ -1,3 +1,3 @@
-# Be sure to restart your server when you modify this file.
-
-Rails.application.config.session_store :cookie_store, key: "_slack_backup_session"
+Rails.application.config.session_store :redis_store,
+                                       servers: ENV.fetch("REDIS_URL") { "redis://@localhost:6379" } + "/0/sessions",
+                                       expires_in: 3.days
