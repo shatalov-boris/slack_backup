@@ -29,7 +29,7 @@ gem "jbuilder", "~> 2.5"
 # Storing ENV variable
 gem "figaro"
 
-gem "font-awesome-rails"
+gem "gemoji"
 gem "rest-client", require: false
 
 # Pagination
