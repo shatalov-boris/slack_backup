@@ -1,28 +1,17 @@
 %nav.navbar.navbar-default.navbar-fixed-top
   .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{href: "#"} Slack Backup
+    = link_to "Slack Backup", root_path, class: "navbar-brand"
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li
-          %a{href: "/"} Home
-        %li
-          %a{href: "/team"} Members
-        %li
-          %a{href: "/stats"} Stats
-        %li
-          %a{href: "/channels"} Channels
-      .col-sm-3.col-md-3
-        %form.navbar-form{:action => "{% url 'search' %}", :role => "search"}
-          .input-group
-            %input.form-control{:name => "q", :placeholder => "Search", :type => "text", :value => "{{ request.GET.q }}"}/
-            .input-group-btn
-              %button.btn.btn-default{:type => "submit"}
-                %i.glyphicon.glyphicon-search
-      %ul.nav.navbar-nav.navbar-right
+        %li= link_to "Home", root_path
+        %li= link_to "Members", "/team"
+        %li= link_to "Channels", "/stats"
+        %li= link_to "Home", "/channels"
 
+      .col-sm-3.col-md-3
+        %form.navbar-form{action: "{% url 'search' %}", role: "search"}
+          .input-group
+            %input.form-control{name: "q", placeholder: "Search", type: "text", value: "{{ request.GET.q }}"}
+            .input-group-btn
+              %button.btn.btn-default{type: "submit"}
+                %i.glyphicon.glyphicon-search
