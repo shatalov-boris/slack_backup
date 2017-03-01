@@ -30,6 +30,7 @@ gem "jbuilder", "~> 2.5"
 gem "figaro"
 
 gem "gemoji"
+gem "haml-rails"
 gem "redis-rails"
 gem "rest-client", require: false
 gem "sidekiq"
