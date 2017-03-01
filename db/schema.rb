@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170301123945) do
   enable_extension "plpgsql"
 
   create_table "teams", force: :cascade do |t|
-    t.string   "slack_id"
+    t.string   "slack_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slack_id"], name: "index_teams_on_slack_id", unique: true, using: :btree
