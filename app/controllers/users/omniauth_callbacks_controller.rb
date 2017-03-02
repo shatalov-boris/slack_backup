@@ -10,7 +10,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user.update!(team: team, slack_access_token: slack_info.credentials.token)
 
     if @user.persisted?
-      sign_in_and_redirect @user, event: :authentication #this will throw if @user is not activated
+      sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
       set_flash_message(:notice, :success, kind: "Slack") if is_navigational_format?
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
