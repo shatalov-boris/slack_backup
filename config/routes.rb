@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options host: ENV.fetch("DOMAIN") { "localhost:3000" }
   root "home#index"
 
   get "slack_oauth", to: "oauth#slack_oauth"
