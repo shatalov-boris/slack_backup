@@ -14,10 +14,11 @@ class ChannelParser
       channel.creator_slack_id = parsed_channel["creator"]
       channel.topic = parsed_channel["topic"]["value"] if parsed_channel["topic"]
       channel.purpose = parsed_channel["purpose"]["value"] if parsed_channel["purpose"]
-      channel.status = channel["is_archived"] ? :archived : :opened
+      channel.status = parsed_channel["is_archived"] ? :archived : :opened
       channel.channel_type = is_private ? :private_channel : :public_channel
       channel.save!
 
+      channel.channel_members.destroy_all
       parsed_channel["members"]&.each do |member_id|
         user = User.find_by(slack_id: member_id)
         channel.users << user if user
