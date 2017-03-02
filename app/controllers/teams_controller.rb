@@ -6,6 +6,6 @@ class TeamsController < ApplicationController
   end
 
   def user
-    @user = User.find(params[:slug])
+    @user = current_user.team.users.find(params[:slug])
   end
 end

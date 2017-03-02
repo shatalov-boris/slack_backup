@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resource :team, only: [:show] do
     get ":slug", to: "teams#user", as: :member
   end
+
+  resources :channels, only: [:index, :show]
 end

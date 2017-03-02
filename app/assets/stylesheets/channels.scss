@@ -1,0 +1,105 @@
+//colors
+$color_celeste_approx: #ccc;
+$black_5: rgba(0, 0, 0, 0.05);
+$white: #ffffff;
+$color_alto_approx: #dddddd;
+$color_gallery_approx: #eeeeee;
+
+//@extend-elements
+//original selectors
+//.pagination div, .endless_container
+%extend_1 {
+  display: inline-block;
+  *display: inline;
+  margin-bottom: 0;
+  margin-left: 0;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 3px;
+  *zoom: 1;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 1px 2px $black_5;
+}
+
+//original selectors
+//.pagination div >a, .pagination span, .endless_container a
+%extend_2 {
+  float: left;
+  padding: 0 14px;
+  line-height: 38px;
+  background-color: $white;
+  border: 1px solid $color_alto_approx;
+  border-left-width: 0;
+}
+
+.dt {
+  float: right;
+  color: $color_celeste_approx;
+}
+
+.pagination {
+  div {
+    @extend %extend_1;
+    > a {
+      @extend %extend_2;
+      &:hover {
+        background-color: $color_gallery_approx;
+      }
+      &:first-child {
+        border-left-width: 1px;
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 3px 0 0 3px;
+      }
+    }
+    > span:first-child {
+      border-left-width: 1px;
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 3px 0 0 3px;
+    }
+  }
+  span {
+    @extend %extend_2;
+  }
+  .endless_page_current {
+    background-color: $color_gallery_approx;
+  }
+}
+
+.endless_container {
+  @extend %extend_1;
+  width: 50%;
+  a {
+    @extend %extend_2;
+    border-left-width: 1px;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 3px 0 0 3px;
+    text-align: center;
+    width: inherit;
+    text-decoration: none;
+    &:hover {
+      background-color: $color_gallery_approx;
+    }
+  }
+}
+
+blockquote {
+  padding-bottom: 0;
+  padding-top: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  &:last-of-type {
+    margin-bottom: 10px;
+  }
+}
+
+img.emoji {
+  width: 25px;
+}
+
+.container .table-striped {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+td.username {
+  width: 170px;
+}
