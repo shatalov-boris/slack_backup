@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20170301123945) do
   create_table "users", force: :cascade do |t|
     t.string   "email",              null: false
     t.string   "username",           null: false
+    t.string   "first_name",         null: false
+    t.string   "last_name",          null: false
     t.string   "slack_access_token", null: false
     t.string   "slack_id",           null: false
     t.datetime "created_at",         null: false
