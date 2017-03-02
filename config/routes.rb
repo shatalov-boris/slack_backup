@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
-  resource :team, only: [:show]
+  resource :team, only: [:show] do
+    get ":slug", to: "teams#user", as: :member
+  end
 end
