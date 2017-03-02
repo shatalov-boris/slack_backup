@@ -8,32 +8,10 @@ class SlackApiClient
     @client_secret = ENV["SLACK_CLIENT_SECRET"]
   end
 
-  def access_token(code)
-    url = "https://slack.com/api/oauth.access?client_id=#{@client_id}&client_secret=#{@client_secret}"\
-          + "&code=#{code}&redirect_uri=#{slack_oauth_callback_url}"
+  def team_members(slack_access_token)
+    url = "https://slack.com/api/users.list?token=#{slack_access_token}"
 
     response = RestClient.get(url)
-    JSON.parse(response.body)["access_token"]
-  end
-
-  def user_id(access_token)
-    url = "https://slack.com/api/auth.test?token=#{access_token}"
-
-    response = RestClient.get(url)
-    JSON.parse(response.body)["user_id"]
-  end
-
-  def user_info(access_token, slack_user_id)
-    url = "https://slack.com/api/users.info?token=#{access_token}&user=#{slack_user_id}"
-
-    response = RestClient.get(url)
-    JSON.parse(response.body)
-  end
-
-  def team_info(access_token)
-    url = "https://slack.com/api/team.info?token=#{access_token}"
-
-    response = RestClient.get(url)
-    JSON.parse(response.body)["team"]
+    JSON.parse(response.body)["members"]
   end
 end
