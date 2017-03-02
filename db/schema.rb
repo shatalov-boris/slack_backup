@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20170302065150) do
     t.integer  "team_id",                          null: false
     t.string   "encrypted_password",  default: "", null: false
     t.datetime "remember_created_at"
+    t.string   "provider"
+    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["team_id"], name: "index_users_on_team_id", using: :btree
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree

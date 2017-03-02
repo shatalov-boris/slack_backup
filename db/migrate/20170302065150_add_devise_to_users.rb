@@ -6,6 +6,10 @@ class AddDeviseToUsers < ActiveRecord::Migration[5.0]
 
       ## Rememberable
       t.datetime :remember_created_at
+
+      ## Omniauth
+      t.string :provider
+      t.string :uid
     end
   end
 
