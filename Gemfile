@@ -29,6 +29,7 @@ gem "jbuilder", "~> 2.5"
 # Storing ENV variable
 gem "figaro"
 
+gem "devise"
 gem "gemoji"
 gem "haml-rails"
 gem "redis-rails"
