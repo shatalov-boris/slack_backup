@@ -32,6 +32,7 @@ gem "figaro"
 gem "devise"
 gem "gemoji"
 gem "haml-rails"
+gem "omniauth-slack"
 gem "redis-rails"
 gem "rest-client", require: false
 gem "sidekiq"
