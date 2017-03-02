@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302085656) do
+ActiveRecord::Schema.define(version: 20170302110420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "channel_members", force: :cascade do |t|
+    t.integer  "channel_id", null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id", "user_id"], name: "index_channel_members_on_channel_id_and_user_id", unique: true, using: :btree
+    t.index ["channel_id"], name: "index_channel_members_on_channel_id", using: :btree
+    t.index ["user_id"], name: "index_channel_members_on_user_id", using: :btree
+  end
+
+  create_table "channels", force: :cascade do |t|
+    t.text     "name",             null: false
+    t.text     "topic"
+    t.text     "purpose"
+    t.string   "slack_id",         null: false
+    t.string   "creator_slack_id", null: false
+    t.integer  "channel_type",     null: false
+    t.integer  "status",           null: false
+    t.integer  "next_crawl_cycle"
+    t.datetime "next_crawl_time"
+    t.datetime "latest_crawled"
+    t.datetime "oldest_crawled"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["name"], name: "index_channels_on_name", using: :btree
+    t.index ["slack_id"], name: "index_channels_on_slack_id", using: :btree
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
