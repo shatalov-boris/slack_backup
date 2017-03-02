@@ -5,11 +5,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     team_info = slack_info.extra.team_info.team
     team = Team.find_or_create_by!(slack_id: team_info.id, name: team_info.name)
 
-    user_info = slack_info.extra.user_info.user
-    @user = UserBuilder.build!(user_info, slack_info.uid)
-    @user.update!(team: team, slack_access_token: slack_info.credentials.token)
+    @user = UserBuilder.from_omniauth!(slack_info)
+    @user.update!(slack_access_token: slack_info.credentials.token)
 
     if @user.persisted?
+      MembersParserWorker.perform_async(team.id, slack_info.credentials.token)
       sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
       set_flash_message(:notice, :success, kind: "Slack") if is_navigational_format?
     else

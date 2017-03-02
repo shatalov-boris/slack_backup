@@ -1,0 +1,10 @@
+%h2 Members
+
+%table.table.table-striped
+  - @team.users.each do |user|
+    %tr
+      %td
+        = link_to user.username, "/team/#{user.username}"
+
+= link_to "View your channels", "/channels", class: "btn btn-success"
+
