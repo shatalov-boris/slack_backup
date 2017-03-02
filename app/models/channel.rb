@@ -9,8 +9,8 @@ class Channel < ApplicationRecord
   }
 
   enum channel_type: {
-    public: 0,
-    private: 1,
+    public_channel: 0,
+    private_channel: 1,
     direct_message: 2
   }
 end
