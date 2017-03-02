@@ -16,21 +16,21 @@ ActiveRecord::Schema.define(version: 20170302065150) do
   enable_extension "plpgsql"
 
   create_table "teams", force: :cascade do |t|
-    t.string   "slack_id",   null: false
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "slack_id",   default: "", null: false
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.index ["name"], name: "index_teams_on_name", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                            null: false
-    t.string   "username",                         null: false
-    t.string   "first_name",                       null: false
-    t.string   "last_name",                        null: false
-    t.string   "slack_access_token",               null: false
-    t.string   "slack_id",                         null: false
-    t.string   "avatar",                           null: false
+    t.string   "email",               default: "", null: false
+    t.string   "username",            default: "", null: false
+    t.string   "first_name",          default: ""
+    t.string   "last_name",           default: ""
+    t.string   "slack_access_token",  default: ""
+    t.string   "slack_id",            default: "", null: false
+    t.string   "avatar",              default: ""
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "team_id",                          null: false

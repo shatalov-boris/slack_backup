@@ -1,13 +1,13 @@
 class CreateUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :users do |t|
-      t.string :email, null: false
-      t.string :username, null: false
-      t.string :first_name, null: false
-      t.string :last_name, null: false
-      t.string :slack_access_token, null: false
-      t.string :slack_id, null: false
-      t.string :avatar, null: false
+      t.string :email, null: false, default: ""
+      t.string :username, null: false, default: ""
+      t.string :first_name, default: ""
+      t.string :last_name, default: ""
+      t.string :slack_access_token, default: ""
+      t.string :slack_id, null: false, default: ""
+      t.string :avatar, default: ""
 
       t.timestamps
     end
