@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170302065150) do
     t.string   "last_name",                        null: false
     t.string   "slack_access_token",               null: false
     t.string   "slack_id",                         null: false
+    t.string   "avatar",                           null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "team_id",                          null: false

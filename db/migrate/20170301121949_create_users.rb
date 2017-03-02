@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :last_name, null: false
       t.string :slack_access_token, null: false
       t.string :slack_id, null: false
+      t.string :avatar, null: false
 
       t.timestamps
     end
