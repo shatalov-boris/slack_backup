@@ -3,15 +3,15 @@
     = link_to "Slack Backup", root_path, class: "navbar-brand"
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li= link_to "Home", root_path
-        %li= link_to "Members", "/team"
-        %li= link_to "Channels", "/stats"
-        %li= link_to "Home", "/channels"
+        %li= link_to "Members", team_path
+        %li= link_to "Stats", "/stats"
+        %li= link_to "Channels", "/channels"
+        %li= link_to("Logout", destroy_user_session_path, method: :delete)
 
       .col-sm-3.col-md-3
         %form.navbar-form{action: "{% url 'search' %}", role: "search"}
           .input-group
-            %input.form-control{name: "q", placeholder: "Search", type: "text", value: "{{ request.GET.q }}"}
+            %input.form-control{name: "q", placeholder: "Search", type: "text", value: params[:q]}
             .input-group-btn
               %button.btn.btn-default{type: "submit"}
                 %i.glyphicon.glyphicon-search
