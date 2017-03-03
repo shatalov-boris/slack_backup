@@ -7,5 +7,7 @@ class User < ApplicationRecord
   belongs_to :team
   has_many :channel_members
   has_many :channels, through: :channel_members
+  has_many :user_reactions
+  has_many :reactions, through: :user_reactions
   has_many :messages
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302111159) do
+ActiveRecord::Schema.define(version: 20170303103921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,14 +58,24 @@ ActiveRecord::Schema.define(version: 20170302111159) do
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "channel_id"
-    t.integer  "message_type", null: false
+    t.integer  "message_type",                null: false
     t.boolean  "hidden"
-    t.text     "text",         null: false
+    t.text     "text",                        null: false
     t.datetime "ts"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "reactions_count", default: 0
     t.index ["channel_id"], name: "index_messages_on_channel_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "reactions", force: :cascade do |t|
+    t.integer  "message_id", null: false
+    t.text     "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_reactions_on_message_id", using: :btree
+    t.index ["name"], name: "index_reactions_on_name", using: :btree
   end
 
   create_table "teams", force: :cascade do |t|
@@ -74,6 +84,16 @@ ActiveRecord::Schema.define(version: 20170302111159) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["name"], name: "index_teams_on_name", unique: true, using: :btree
+  end
+
+  create_table "user_reactions", force: :cascade do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "reaction_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["reaction_id"], name: "index_user_reactions_on_reaction_id", using: :btree
+    t.index ["user_id", "reaction_id"], name: "index_user_reactions_on_user_id_and_reaction_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_user_reactions_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

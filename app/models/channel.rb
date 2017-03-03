@@ -2,6 +2,7 @@ class Channel < ApplicationRecord
   has_many :channel_members
   has_many :users, through: :channel_members
   has_many :messages
+  has_many :reactions
 
   enum status: {
     opened: 0,
