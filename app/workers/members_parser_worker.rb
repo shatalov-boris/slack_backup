@@ -1,12 +1,11 @@
 class MembersParserWorker
   include Sidekiq::Worker
 
-  def perform(team_id, slack_access_token)
-    team = Team.find(team_id)
-    members = SlackApiClient.new(slack_access_token).team_members
-
-    members.each do |member|
-      UserBuilder.from_api(member)&.update!(team: team)
-    end
+  def perform(user_info, team_id)
+    Rails.logger.info("[MembersParserWorker] Started")
+    user = UserBuilder.from_api(user_info)
+    user.team_id = team_id
+    user.save!
+    Rails.logger.info("[MembersParserWorker] Finished for #{user.username}")
   end
 end
