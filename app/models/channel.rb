@@ -4,6 +4,8 @@ class Channel < ApplicationRecord
   has_many :messages
   has_many :reactions
 
+  after_initialize :set_next_crawl_time, unless: :next_crawl_time
+
   enum status: {
     opened: 0,
     archived: 1
@@ -14,4 +16,10 @@ class Channel < ApplicationRecord
     private_channel: 1,
     direct_message: 2
   }
+
+  private
+
+  def set_next_crawl_time
+    self.next_crawl_time = DateTime.current
+  end
 end

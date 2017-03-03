@@ -26,19 +26,19 @@ ActiveRecord::Schema.define(version: 20170303103921) do
   end
 
   create_table "channels", force: :cascade do |t|
-    t.text     "name",             null: false
+    t.text     "name",                         null: false
     t.text     "topic"
     t.text     "purpose"
-    t.string   "slack_id",         null: false
-    t.string   "creator_slack_id", null: false
-    t.integer  "channel_type",     null: false
-    t.integer  "status",           null: false
-    t.integer  "next_crawl_cycle"
+    t.string   "slack_id",                     null: false
+    t.string   "creator_slack_id",             null: false
+    t.integer  "channel_type",                 null: false
+    t.integer  "status",                       null: false
+    t.integer  "next_crawl_cycle", default: 1
     t.datetime "next_crawl_time"
     t.datetime "latest_crawled"
     t.datetime "oldest_crawled"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["name"], name: "index_channels_on_name", using: :btree
     t.index ["slack_id"], name: "index_channels_on_slack_id", using: :btree
   end

@@ -11,7 +11,7 @@ class CreateChannels < ActiveRecord::Migration[5.0]
       t.integer :channel_type, null: false
       t.integer :status, null: false
 
-      t.integer :next_crawl_cycle
+      t.integer :next_crawl_cycle, default: 1
       t.datetime :next_crawl_time
       t.datetime :latest_crawled
       t.datetime :oldest_crawled
