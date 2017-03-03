@@ -1,3 +1,5 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   default_url_options host: ENV.fetch("DOMAIN") { "localhost:3000" }
   root "teams#show"
@@ -9,4 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :channels, only: [:index, :show]
+
+  authenticate :user, ->(u) { u.email == ENV["ADMIN_EMAIL"] } do
+    mount Sidekiq::Web => "/sidekiq"
+  end
 end
