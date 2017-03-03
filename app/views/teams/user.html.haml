@@ -1,0 +1,18 @@
+%h2= @user.username
+
+.row
+  .col-xs-12
+  %table.table.table-striped
+    - @messages.each do |message|
+      %tr
+        %td.username
+          %img{src: @user.avatar, class: "user-avatar"}
+          = @user.username
+        %td
+          = link_to "In: #{message.channel.name}", channel_path(message.channel)
+          %br
+          = message.text
+          %span.dt= message.ts.strftime("%d %b %Y %H:%M")
+.row
+  .col-xs-12
+    = paginate @messages, window: 3, theme: "twitter-bootstrap-3"

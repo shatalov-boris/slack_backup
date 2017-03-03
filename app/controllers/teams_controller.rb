@@ -7,5 +7,6 @@ class TeamsController < ApplicationController
 
   def user
     @user = current_user.team.users.find(params[:slug])
+    @messages = @user.messages.includes(:channel).page(params[:page]).per(20)
   end
 end
