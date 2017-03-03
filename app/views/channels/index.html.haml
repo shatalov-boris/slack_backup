@@ -1,12 +1,15 @@
-%h4 Active Channels
-%table.table.table-striped
-  - @active_channels.each do |channel|
-    %tr
-      %td= link_to channel.name, channel_path(channel)
+.row
+  .col-xs-12
+    %h4 Active Channels
+    %table.table.table-striped
+      - @active_channels.each do |channel|
+        %tr
+          %td= link_to channel.name, channel_path(channel)
 
-%h4 Archived Channels
-%table.table.table-striped
-  - @archived_channels.each do |channel|
-    %tr
-      %td= link_to channel.name, channel_path(channel)
-
+.row
+  .col-xs-12
+    %h4 Archived Channels
+    %table.table.table-striped
+      - @archived_channels.each do |channel|
+        %tr
+          %td= link_to channel.name, channel_path(channel)

@@ -1,9 +1,10 @@
 %h2 Members
 
-%table.table.table-striped
-  - @team.users.each do |user|
-    %tr
-      %td
-        = link_to user.username, member_team_path(user.slug)
-
-= link_to "View your channels", "/channels", class: "btn btn-success"
+.row
+  .col-xs-12
+    %table.table.table-striped
+      - @team.users.each do |user|
+        %tr
+          %td.username
+            %img{src: user.avatar, class: "user-avatar"}
+            = link_to user.username, member_team_path(user.slug)
