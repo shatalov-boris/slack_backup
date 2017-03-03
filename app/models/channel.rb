@@ -17,9 +17,17 @@ class Channel < ApplicationRecord
     direct_message: 2
   }
 
+  def user_with_access
+    creator.slack_access_token.blank? ? users.where.not(slack_access_token: "").first : creator
+  end
+
   private
 
   def set_next_crawl_time
     self.next_crawl_time = DateTime.current
+  end
+
+  def creator
+    User.find_by(slack_id: creator_slack_id)
   end
 end
