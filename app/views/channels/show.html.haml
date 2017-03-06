@@ -9,7 +9,7 @@
           %img{src: message.user.avatar, class: "user-avatar"}
           = message.user.username
         %td
-          = message.text
+          = MessageFormatter.new(message.text).format
           %span.dt= message.ts.strftime("%d %b %Y %H:%M")
 .row
   .col-xs-12
