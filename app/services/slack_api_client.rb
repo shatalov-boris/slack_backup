@@ -22,6 +22,11 @@ class SlackApiClient
     JSON.parse(response.body)["groups"]
   end
 
+  def direct_messages
+    response = RestClient.get(api_url("im.list"))
+    JSON.parse(response.body)["ims"]
+  end
+
   def channel_history(channel, options = {})
     endpoint = options[:private] ? "groups.history" : "channels.history"
     url = api_url(endpoint) + "&channel=#{channel.slack_id}"

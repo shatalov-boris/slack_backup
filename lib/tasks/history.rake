@@ -2,7 +2,7 @@ namespace :slack_backup do
   desc "parse channels"
   task channels_parse: :environment do
     User.find_each do |user|
-      ChannelsParser.parse_all(user.slack_access_token)
+      ChannelsParser.parse_all(user)
     end
   end
 
