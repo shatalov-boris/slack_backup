@@ -18,7 +18,7 @@ class Channel < ApplicationRecord
   }
 
   def user_with_access
-    creator.slack_access_token.blank? ? users.where.not(slack_access_token: "").first : creator
+    creator&.slack_access_token.blank? ? users.where.not(slack_access_token: "").first : creator
   end
 
   private
