@@ -11,13 +11,10 @@ class ChannelParserWorker
     channel.purpose = parsed_channel["purpose"]["value"] if parsed_channel["purpose"]
     channel.status = parsed_channel["is_archived"] ? :archived : :opened
     channel.channel_type = is_private ? :private_channel : :public_channel
-    channel.save!
+    channel.save! if channel.new_record? || channel.changed?
 
     channel.channel_members.destroy_all
-    parsed_channel["members"]&.each do |member_id|
-      user = User.find_by(slack_id: member_id)
-      channel.users << user if user
-    end
+    channel.users = User.where(slack_id: parsed_channel["members"])
 
     Rails.logger.info("[ChannelParserWorker] Finished for Channel with ID = #{channel.id}")
   end

@@ -5,7 +5,11 @@ class MembersParserWorker
     Rails.logger.info("[MembersParserWorker] Started")
     user = UserBuilder.from_api(user_info)
     user.team_id = team_id
-    user.save!
-    Rails.logger.info("[MembersParserWorker] Finished for #{user.username}")
+    if user.new_record? || user.changed?
+      user.save!
+      Rails.logger.info("[MembersParserWorker] Created new user #{user.username}")
+    else
+      Rails.logger.info("[MembersParserWorker] User #{user.username} without changes")
+    end
   end
 end

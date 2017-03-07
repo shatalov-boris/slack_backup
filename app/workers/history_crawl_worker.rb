@@ -76,12 +76,11 @@ class HistoryCrawlWorker
                                                         ts: Time.at(message["ts"].to_d),
                                                         channel: channel)
       new_message.text = message["text"]
-      new_message.save!
+      new_message.save! if new_message.new_record? || new_message.changed?
 
       message["reactions"]&.each do |reaction|
         ar_reaction = new_message.reactions.find_or_create_by!(name: reaction["name"])
         ar_reaction.users = User.where(slack_id: reaction["users"])
-        ar_reaction.save!
       end
     end
   end
