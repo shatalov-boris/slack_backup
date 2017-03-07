@@ -29,7 +29,7 @@ class SlackApiClient
     if options[:oldest]
       url += "&latest=#{channel.oldest_crawled.to_i}"
     elsif options[:latest]
-      url += "&oldest=#{channel.latest_crawled.to_i}&latest=#{channel.latest_crawled.to_i}"
+      url += "&oldest=#{channel.oldest_crawled.to_i}&latest=#{channel.latest_crawled.to_i}"
     end
 
     response = RestClient.get(url)
