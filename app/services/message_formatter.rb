@@ -35,13 +35,13 @@ class MessageFormatter
   private
 
   def user_link(text)
-    user = User.find_by(slack_id: "U#{text.split("|")[0]}")
+    user = User.find_by(slack_id: "U#{text.split('|')[0]}")
     return "" unless user
     content_tag(:a, "@#{user.username}", href: member_team_path(user))
   end
 
   def channel_link(text)
-    channel = Channel.find_by(slack_id: "U#{text.split("|")[0]}")
+    channel = Channel.find_by(slack_id: "U#{text.split('|')[0]}")
     return "" unless channel
     content_tag(:a, "@#{channel.name}", href: channel_path(channel))
   end
