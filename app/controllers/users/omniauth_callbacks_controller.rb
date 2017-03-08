@@ -13,7 +13,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       MembersParser.parse_all(team, slack_info.credentials.token)
-      ChannelsParser.parse_all(slack_info.credentials.token)
+      ChannelsParser.parse_all(@user)
       sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
       set_flash_message(:notice, :success, kind: "Slack") if is_navigational_format?
     else
