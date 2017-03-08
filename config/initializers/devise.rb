@@ -249,7 +249,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :slack, ENV["SLACK_CLIENT_ID"], ENV["SLACK_CLIENT_SECRET"],
-                  scope: "identify channels:history channels:read users:read users:read.email groups:read groups:history"
+                  scope: "identify channels:history channels:read users:read users:read.email im:read	im:history groups:read groups:history"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
