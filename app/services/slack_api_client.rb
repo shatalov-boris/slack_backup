@@ -28,7 +28,16 @@ class SlackApiClient
   end
 
   def channel_history(channel, options = {})
-    endpoint = options[:private] ? "groups.history" : "channels.history"
+    endpoint = case channel.channel_type.to_sym
+               when :public_channel
+                 "channels.history"
+               when :private_channel
+                 "groups.history"
+               when :direct_message
+                 "im.history"
+               else
+                 raise "unexpected channel type - #{channel.channel_type}"
+               end
     url = api_url(endpoint) + "&channel=#{channel.slack_id}"
 
     if options[:oldest]

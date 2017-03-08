@@ -30,7 +30,7 @@ class HistoryCrawlWorker
     slack_api_client = SlackApiClient.new(slack_access_token)
 
     while channel.oldest_crawled > epoch
-      history = slack_api_client.channel_history(channel, private: channel.private_channel?, oldest: true)
+      history = slack_api_client.channel_history(channel, oldest: true)
       messages = history["messages"]
 
       if messages&.any?
@@ -52,7 +52,7 @@ class HistoryCrawlWorker
       channel.latest_crawled += 12.hours
       channel.latest_crawled = now if channel.latest_crawled > now
 
-      history = slack_api_client.channel_history(channel, private: channel.private_channel?, latest: true)
+      history = slack_api_client.channel_history(channel, latest: true)
       messages = history["messages"]
 
       if messages&.any?
