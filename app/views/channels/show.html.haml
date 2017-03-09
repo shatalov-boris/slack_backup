@@ -2,6 +2,8 @@
 
 .row
   .col-xs-12
+    - if @messages.empty?
+      There are no messages.
   %table.table.table-striped
     - @messages.each do |message|
       %tr
