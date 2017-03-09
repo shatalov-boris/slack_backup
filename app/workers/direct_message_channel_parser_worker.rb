@@ -7,7 +7,7 @@ class DirectMessageChannelParserWorker
 
     partner = User.find_by(slack_id: parsed_channel["user"])
     unless partner
-      Rails.logger.info("[ChannelParserWorker] Can not find user with slack ID #{parsed_channel["user"]}")
+      Rails.logger.info("[ChannelParserWorker] Can not find user with slack ID #{parsed_channel['user']}")
       return
     end
 
