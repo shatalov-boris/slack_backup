@@ -3,7 +3,7 @@ class ChannelsController < ApplicationController
 
   def index
     @opened_channels = current_user.channels.includes(:users).opened.to_a.group_by(&:channel_type)
-    @archived_channels = current_user.channels.includes(:users).archived
+    @archived_channels = current_user.channels.archived
   end
 
   def show
