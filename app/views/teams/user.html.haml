@@ -1,4 +1,4 @@
-%h2= @user.username
+%h2= @user.name
 
 .row
   .col-xs-12
@@ -7,7 +7,7 @@
       %tr
         %td.username
           %img{src: @user.avatar, class: "user-avatar"}
-          = @user.username
+          = @user.name
         %td
           = link_to "In: #{message.channel.name}", channel_path(message.channel)
           %br

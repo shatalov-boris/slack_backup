@@ -7,4 +7,4 @@
         %tr
           %td.username
             %img{src: user.avatar, class: "user-avatar"}
-            = link_to user.username, member_team_path(user.slug)
+            = link_to "#{user.name} (#{user.username})", member_team_path(user.slug)

@@ -10,4 +10,12 @@ class User < ApplicationRecord
   has_many :user_reactions
   has_many :reactions, through: :user_reactions
   has_many :messages
+
+  def name
+    if first_name.present? && last_name.present?
+      "#{first_name} #{last_name}"
+    else
+      username
+    end
+  end
 end
