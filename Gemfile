@@ -32,11 +32,11 @@ gem "jbuilder", "~> 2.5"
 gem "figaro"
 
 gem "devise"
-gem "friendly_id"
-gem "gemoji"
+gem "friendly_id" # Pretty urls
+gem "gemoji" # Emoji support
 gem "haml-rails"
 gem "omniauth-slack"
-gem "redcarpet"
+gem "redcarpet" # Markdown support
 gem "redis-rails"
 gem "rest-client", require: false
 gem "sidekiq"
