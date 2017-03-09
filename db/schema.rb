@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303103921) do
+ActiveRecord::Schema.define(version: 20170309123151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(version: 20170303103921) do
     t.datetime "oldest_crawled"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.index ["channel_type"], name: "index_channels_on_channel_type", using: :btree
     t.index ["name"], name: "index_channels_on_name", using: :btree
     t.index ["slack_id"], name: "index_channels_on_slack_id", using: :btree
+    t.index ["status"], name: "index_channels_on_status", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
