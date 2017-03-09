@@ -11,7 +11,7 @@
         %td
           = link_to "In: #{message.channel.name}", channel_path(message.channel)
           %br
-          = MessageFormatter.new(message.text).format
+          = emojify(MessageFormatter.new(message.text).format)
           %span.dt= message.ts.strftime("%d %b %Y %H:%M")
 .row
   .col-xs-12
