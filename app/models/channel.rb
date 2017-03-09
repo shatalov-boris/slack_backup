@@ -14,7 +14,8 @@ class Channel < ApplicationRecord
   enum channel_type: {
     public_channel: 0,
     private_channel: 1,
-    direct_message: 2
+    direct_message: 2,
+    group_message: 3
   }
 
   def user_with_access
