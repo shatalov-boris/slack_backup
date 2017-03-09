@@ -29,7 +29,7 @@ class MessageFormatter
     links = @message.scan(/<https:\/\/(.*?)>/)
     links.each { |link| @message.gsub!("<https://#{link[0]}>", link("https://#{link[0]}")) }
 
-    @message.html_safe
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@message).html_safe
   end
 
   private

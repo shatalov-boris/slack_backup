@@ -36,6 +36,7 @@ gem "friendly_id"
 gem "gemoji"
 gem "haml-rails"
 gem "omniauth-slack"
+gem "redcarpet"
 gem "redis-rails"
 gem "rest-client", require: false
 gem "sidekiq"
