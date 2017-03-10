@@ -18,8 +18,25 @@ class Channel < ApplicationRecord
     group_message: 3
   }
 
+  def name(user = nil)
+    if direct_message?
+      raise "`user` parameter must be present to detect direct message channel name" unless user
+      partner(user).name
+    elsif group_message?
+      users.map(&:name).join(", ")
+    else
+      super()
+    end
+  end
+
+  def partner(user)
+    raise "`partner` can be only for direct message channel" unless direct_message?
+    return user if users.count == 1
+    users.to_a.detect { |ch_user| ch_user != user }
+  end
+
   def user_with_access
-    creator&.slack_access_token.blank? ? users.where.not(slack_access_token: "").first : creator
+    creator&.slack_access_token.blank? ? users.detect { |user| user.slack_access_token.present? }.first : creator
   end
 
   private

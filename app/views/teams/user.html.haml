@@ -9,7 +9,7 @@
           %img{src: @user.avatar, class: "user-avatar"}
           = @user.name
         %td
-          = link_to "In: #{channel_name(message.channel)}", channel_path(message.channel)
+          = link_to "In: #{message.channel.name(current_user)}", channel_path(message.channel)
           %br
           = emojify(MessageFormatter.new(message.text).format)
           %span.dt= message.ts.strftime("%d %b %Y %H:%M")

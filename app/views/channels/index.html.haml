@@ -6,7 +6,10 @@
       %table.table.table-striped
         - channels.each do |channel|
           %tr
-            %td= link_to channel_name(channel), channel_path(channel)
+            %td
+              - if channel.direct_message?
+                %img{src: channel.partner(current_user).avatar, class: "user-avatar"}
+              = link_to channel.name(current_user), channel_path(channel)
 
 - if @archived_channels.any?
   .row
@@ -15,4 +18,4 @@
       %table.table.table-striped
         - @archived_channels.each do |channel|
           %tr
-            %td= link_to channel_name(channel), channel_path(channel)
+            %td= link_to channel.name(current_user), channel_path(channel)
