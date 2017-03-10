@@ -2,7 +2,7 @@ require "sidekiq/web"
 
 Rails.application.routes.draw do
   default_url_options host: ENV.fetch("DOMAIN") { "localhost:3000" }
-  root "teams#show"
+  root "channels#index"
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
