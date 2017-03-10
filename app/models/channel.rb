@@ -36,7 +36,7 @@ class Channel < ApplicationRecord
   end
 
   def user_with_access
-    creator&.slack_access_token.blank? ? users.detect { |user| user.slack_access_token.present? }.first : creator
+    creator&.slack_access_token.blank? ? users.detect { |user| user.slack_access_token.present? } : creator
   end
 
   private
