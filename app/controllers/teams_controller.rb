@@ -9,8 +9,8 @@ class TeamsController < ApplicationController
     @user = current_user.team.users.find(params[:slug])
     @messages = @user
                   .messages
-                  .joins(channel: :users)
-                  .where(users: { id: current_user.id })
+                  .joins(:channel)
+                  .where(channels: { id: current_user.channels.ids })
                   .includes(channel: :users)
                   .order(ts: :desc)
                   .page(params[:page])
