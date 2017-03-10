@@ -29,7 +29,7 @@ class MessageFormatter
     links = @message.scan(/<https:\/\/(.*?)>/)
     links.each { |link| @message.gsub!("<https://#{link[0]}>", link("https://#{link[0]}")) }
 
-    Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@message).html_safe
+    markup_format(@message).html_safe
   end
 
   private
@@ -54,5 +54,27 @@ class MessageFormatter
 
   def mention(text)
     content_tag(:a, "@#{text}")
+  end
+
+  def markup_format(message)
+    # Bold
+    message.gsub!(/[*](.*?)[*]/) do
+      %(<b>#{Regexp.last_match(1)}</b>)
+    end
+
+    # Italic
+    message.gsub!(/_(.*?)_/) do
+      %(<em>#{Regexp.last_match(1)}</em>)
+    end
+
+    # Strike
+    message.gsub!(/~(.*?)~/) do
+      %(<strike>#{Regexp.last_match(1)}</strike>)
+    end
+
+    # Code
+    message.gsub(/`(.*?)`/) do
+      %(<code>#{Regexp.last_match(1)}</code>)
+    end
   end
 end
