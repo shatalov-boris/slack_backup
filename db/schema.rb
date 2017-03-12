@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312183150) do
+ActiveRecord::Schema.define(version: 20170312200104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,13 +61,12 @@ ActiveRecord::Schema.define(version: 20170312183150) do
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "channel_id"
-    t.integer  "message_type",                null: false
+    t.integer  "message_type", null: false
     t.boolean  "hidden"
-    t.text     "text",                        null: false
+    t.text     "text",         null: false
     t.datetime "ts"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "reactions_count", default: 0
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.index ["channel_id"], name: "index_messages_on_channel_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
