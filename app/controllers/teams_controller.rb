@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
                   .messages
                   .joins(:channel)
                   .where(channels: { id: current_user.channels.ids })
-                  .includes(channel: :users)
+                  .includes(channel: :users, reactions: :users)
                   .order(ts: :desc)
                   .page(params[:page])
                   .per(20)
