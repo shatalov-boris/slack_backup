@@ -37,7 +37,7 @@ class HistoryCrawlWorker
         latest = messages[-1]["ts"]
         has_more = history["has_more"]
         channel.oldest_crawled = has_more ? Time.at(latest.to_d) : epoch
-        add_messages(messages, channel)
+        MessageAdder.add(messages, channel)
       else
         channel.oldest_crawled = epoch
       end
@@ -56,31 +56,9 @@ class HistoryCrawlWorker
       messages = history["messages"]
 
       if messages&.any?
-        add_messages(messages, channel)
+        MessageAdder.add(messages, channel)
       else
         channel.latest_crawled = now
-      end
-    end
-  end
-
-  def add_messages(messages, channel)
-    messages.each do |message|
-      user = User.find_by(slack_id: message["user"])
-
-      unless user
-        Rails.logger.info("[HistoryCrawlWorker] There is no User with slack_id = #{message['user']}")
-        next
-      end
-
-      new_message = user.messages.find_or_initialize_by(message_type: message["type"],
-                                                        ts: Time.at(message["ts"].to_d),
-                                                        channel: channel)
-      new_message.text = message["text"]
-      new_message.save! if new_message.new_record? || new_message.changed?
-
-      message["reactions"]&.each do |reaction|
-        ar_reaction = new_message.reactions.find_or_create_by!(name: reaction["name"])
-        ar_reaction.users = User.where(slack_id: reaction["users"])
       end
     end
   end
