@@ -4,17 +4,7 @@ class ChannelParserWorker
   def perform(parsed_channel, is_private = false)
     Rails.logger.info("[ChannelParserWorker] Started")
 
-    channel = Channel.find_or_initialize_by(slack_id: parsed_channel["id"])
-    channel.name = parsed_channel["name"]
-    channel.creator_slack_id = parsed_channel["creator"]
-    channel.topic = parsed_channel["topic"]["value"] if parsed_channel["topic"]
-    channel.purpose = parsed_channel["purpose"]["value"] if parsed_channel["purpose"]
-    channel.status = parsed_channel["is_archived"] ? :archived : :opened
-    channel.channel_type = if is_private
-                             parsed_channel["is_mpim"] ? :group_message : :private_channel
-                           else
-                             :public_channel
-                           end
+     channel = ChannelBuilder.build_from_json(parsed_channel, is_private)
     channel.save! if channel.new_record? || channel.changed?
 
     channel.channel_members.destroy_all
