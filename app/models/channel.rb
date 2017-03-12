@@ -19,6 +19,7 @@ class Channel < ApplicationRecord
   }
 
   scope :with_messages, -> { where.not(messages_count: 0) }
+  scope :recent, -> { order(updated_at: :desc) }
 
   def name(user = nil)
     if direct_message?
