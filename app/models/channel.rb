@@ -18,6 +18,8 @@ class Channel < ApplicationRecord
     group_message: 3
   }
 
+  scope :with_messages, -> { where.not(messages_count: 0) }
+
   def name(user = nil)
     if direct_message?
       raise "`user` parameter must be present to detect direct message channel name" unless user
