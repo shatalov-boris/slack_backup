@@ -1,6 +1,6 @@
 do ($ = jQuery)->
   $(document).on "turbolinks:load",  ->
-    highlightText($("#query-text").text())
+    highlightText($("#query-text").text()) if $("#query-text").text().length > 0
 
   highlightText = (query) ->
     $(".message-text").each (index, textElem) ->
