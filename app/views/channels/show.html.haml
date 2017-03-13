@@ -4,9 +4,9 @@
   .col-xs-12
     - if @messages.empty?
       There are no messages.
-  %table.table.table-striped
-    - @messages.each do |message|
-      = render "message_tr", message: message, user: message.user, channel: @channel
+    %table.table.table-striped
+      - @messages.each do |message|
+        = render "message_tr", message: message, user: message.user, channel: @channel
 .row
   .col-xs-12
     = paginate @messages, window: 3, theme: "twitter-bootstrap-3"
