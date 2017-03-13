@@ -387,3 +387,7 @@ code {
   border: thin solid rgba(84, 81, 81, 0.3);
   border-radius: 5px;
 }
+
+body > .container {
+  padding: 40px 15px 0;
+}
