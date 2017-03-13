@@ -4,7 +4,7 @@
   .col-xs-12
     %table.table.table-striped
       - @messages.each do |message|
-        = render "message_tr", message: message, user: @user, channel: message.channel, show_channel_info: true
+        = render "application/message_tr", message: message, user: @user, channel: message.channel, show_channel_info: true
 .row
   .col-xs-12
     = paginate @messages, window: 3, theme: "twitter-bootstrap-3"

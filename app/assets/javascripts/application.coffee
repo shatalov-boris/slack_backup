@@ -3,3 +3,4 @@
 #= require "turbolinks"
 #= require "bootstrap-sprockets"
 #= require "common"
+#= require "messages"

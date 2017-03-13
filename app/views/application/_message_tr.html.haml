@@ -5,7 +5,7 @@
   %td
     - if defined?(show_channel_info) && show_channel_info
       = link_to "In: #{channel.name(current_user)}", channel_path(channel)
-    %p= emojify(MessageFormatter.new(message.text).format)
+    %p.message-text= emojify(MessageFormatter.new(message.text).format)
     %span.dt= message.ts.strftime("%d %b %Y %H:%M")
     - message.reactions.each do |reaction|
       .reaction{data: { toggle: "tooltip", placement: "top", title: reaction.users.map(&:name).join(", ") }}
