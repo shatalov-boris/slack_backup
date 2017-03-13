@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def search
     searchable_channels_ids = current_user.channels.ids
-    
+
     if params[:channel_id].present?
       @channel = Channel.find(params[:channel_id])
       if @channel.id.in?(searchable_channels_ids)
@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
         redirect_to :back, fallback_location: root_path, alert: "You are not member of this channel."
       end
     end
-    
+
     @messages = Message
                   .basic_search(text: params[:q])
                   .where(channel_id: searchable_channels_ids)
