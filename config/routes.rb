@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :channels, only: [:index, :show]
 
+  get :search, to: "messages#search", as: :search
+  
   authenticate :user, ->(u) { u.email == ENV["ADMIN_EMAIL"] } do
     mount Sidekiq::Web => "/sidekiq"
   end

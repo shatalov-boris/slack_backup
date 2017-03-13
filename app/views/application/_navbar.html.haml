@@ -8,9 +8,12 @@
         %li= link_to "Logout", destroy_user_session_path, method: :delete
 
       .col-sm-3.col-md-3
-        %form.navbar-form{action: "{% url 'search' %}", role: "search"}
+        %form{action: search_path, method: :get, role: "search", class: "navbar-form"}
           .input-group
-            %input.form-control{name: "q", placeholder: "Search", type: "text", value: params[:q]}
+            - if @channel
+              = hidden_field_tag :channel_id, @channel.id
+            = text_field_tag :q, params[:q], class: "form-control", placeholder: "Search"
             .input-group-btn
-              %button.btn.btn-default{type: "submit"}
+              = button_tag name: nil, class: "btn btn-default" do
                 %i.glyphicon.glyphicon-search
+

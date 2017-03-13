@@ -1,0 +1,13 @@
+- channel_info = @channel ? "in '#{@channel.name(current_user)}'" : ""
+%h2 You are looking for '#{params[:q]}' #{channel_info}
+
+.row
+  .col-xs-12
+    - if @messages.empty?
+      There are no messages for your search term.
+    %table.table.table-striped
+      - @messages.each do |message|
+        = render "message_tr", message: message, user: message.user, channel: message.channel
+.row
+  .col-xs-12
+    = paginate @messages, window: 3, theme: "twitter-bootstrap-3"
