@@ -1,4 +1,5 @@
 class Channel < ApplicationRecord
+  belongs_to :team
   has_many :channel_members
   has_many :users, through: :channel_members
   has_many :messages
