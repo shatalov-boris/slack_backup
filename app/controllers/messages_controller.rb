@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     return redirect_to :back, fallback_location: root_path, notice: "You must specify search query." if params[:q].blank?
 
     if params[:channel_id].present?
-      @channel = Channel.find(params[:channel_id])
+      @channel = current_user.channels.find(params[:channel_id])
       if @channel.id.in?(searchable_channels_ids)
         searchable_channels_ids = @channel.id
       else
