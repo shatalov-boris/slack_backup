@@ -64,12 +64,13 @@ ActiveRecord::Schema.define(version: 20170315080206) do
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "channel_id"
-    t.integer  "message_type", null: false
+    t.integer  "message_type",                null: false
     t.boolean  "hidden"
-    t.text     "text",         null: false
+    t.text     "text",                        null: false
     t.datetime "ts"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "reactions_count", default: 0
     t.index ["channel_id"], name: "index_messages_on_channel_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
