@@ -58,3 +58,8 @@ group :development do
   gem "bullet"
   gem "rubocop", require: false
 end
+
+group :production do
+  gem "newrelic_rpm"
+  gem "scout_apm"
+end
