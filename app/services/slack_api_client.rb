@@ -31,7 +31,7 @@ class SlackApiClient
     endpoint = case channel.channel_type.to_sym
                when :public_channel
                  "channels.history"
-               when :private_channel
+               when :private_channel, :group_message
                  "groups.history"
                when :direct_message
                  "im.history"

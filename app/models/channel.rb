@@ -1,4 +1,5 @@
 class Channel < ApplicationRecord
+  belongs_to :team
   has_many :channel_members
   has_many :users, through: :channel_members
   has_many :messages
@@ -17,6 +18,9 @@ class Channel < ApplicationRecord
     direct_message: 2,
     group_message: 3
   }
+
+  scope :with_messages, -> { where.not(messages_count: 0) }
+  scope :recent, -> { order(updated_at: :desc) }
 
   def name(user = nil)
     if direct_message?

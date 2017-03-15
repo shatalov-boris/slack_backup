@@ -56,6 +56,7 @@ class MessageFormatter
     content_tag(:a, "@#{text}")
   end
 
+  # TODO: improve markup mechanism
   def markup_format(message)
     # Bold
     message.gsub!(/[*](.*?)[*]/) do
@@ -63,9 +64,9 @@ class MessageFormatter
     end
 
     # Italic
-    message.gsub!(/_(.*?)_/) do
-      %(<em>#{Regexp.last_match(1)}</em>)
-    end
+    # message.gsub!(/_(.*?)_/) do
+    #   %(<em>#{Regexp.last_match(1)}</em>)
+    # end
 
     # Strike
     message.gsub!(/~(.*?)~/) do

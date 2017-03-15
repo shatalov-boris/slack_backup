@@ -381,3 +381,13 @@ code {
   width: 24px;
   height: 24px;
 }
+
+.reaction {
+  display: inline-block;
+  border: thin solid rgba(84, 81, 81, 0.3);
+  border-radius: 5px;
+}
+
+body > .main-container {
+  padding: 20px 15px 0;
+}

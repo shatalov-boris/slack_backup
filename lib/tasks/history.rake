@@ -20,4 +20,10 @@ namespace :slack_backup do
   task history_parse: :environment do
     HistoryCrawler.crawl_all
   end
+
+  desc "restore history from files"
+  task restore: :environment do
+    folder = Rails.root.join("db", "data", "full_history")
+    HistoryRestorer.restore(folder)
+  end
 end
