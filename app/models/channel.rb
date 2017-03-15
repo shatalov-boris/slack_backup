@@ -35,7 +35,7 @@ class Channel < ApplicationRecord
 
   def partner(user)
     raise "`partner` can be only for direct message channel" unless direct_message?
-    return user if users.count == 1
+    return user if users_count == 1
     users.to_a.detect { |ch_user| ch_user != user }
   end
 
