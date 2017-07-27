@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def search
     searchable_channels_ids = current_user.channels.ids
 

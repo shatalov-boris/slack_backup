@@ -3,7 +3,7 @@ class ChannelParserWorker
 
   def perform(parsed_channel, team_id, is_private = false)
     Rails.logger.info("[ChannelParserWorker] Started")
-    
+
     team = Team.find(team_id)
     channel = ChannelBuilder.build_from_json(parsed_channel, is_private)
     channel.team_id = team.id

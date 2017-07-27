@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get ":slug", to: "teams#user", as: :member
   end
 
-  resources :channels, only: [:index, :show]
+  resources :channels, only: %i[index show]
 
   get :search, to: "messages#search", as: :search
 

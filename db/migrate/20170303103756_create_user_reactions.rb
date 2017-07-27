@@ -7,6 +7,6 @@ class CreateUserReactions < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :user_reactions, [:user_id, :reaction_id], unique: true
+    add_index :user_reactions, %i[user_id reaction_id], unique: true
   end
 end

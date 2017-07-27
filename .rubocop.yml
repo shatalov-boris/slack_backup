@@ -13,23 +13,22 @@ AllCops:
 Documentation:
   Enabled: false
 
+Layout/AlignHash:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+
 Metrics/LineLength:
   Max: 100
   Exclude:
     - 'db/**/*'
-    - 'config/initializers/backtrace_silencers.rb'
 
 Metrics/MethodLength:
   Max: 20
 
-Style/AlignHash:
-  Enabled: false
-
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-Style/MultilineMethodCallIndentation:
-  EnforcedStyle: indented_relative_to_receiver
 
 StringLiterals:
   EnforcedStyle: double_quotes

@@ -3,7 +3,7 @@ class DirectMessageChannelParserWorker
 
   def perform(user_id, team_id, parsed_channel)
     Rails.logger.info("[ChannelParserWorker] Started")
-    
+
     team = Team.find(team_id)
     user = team.users.find(user_id)
 
