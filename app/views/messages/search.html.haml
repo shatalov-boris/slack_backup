@@ -1,7 +1,7 @@
 - channel_info = @channel ? "in '#{@channel.name(current_user)}'" : ""
 %h2
   You are looking for
-  %span#query-text '#{params[:q]}'
+  %span#query-text{ data: { query: params[:q] } } '#{params[:q]}'
   = channel_info
 
 .row
