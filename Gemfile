@@ -38,7 +38,6 @@ gem "omniauth-slack"
 gem "redis-rails"
 gem "rest-client", require: false
 gem "sidekiq"
-gem "textacular"
 
 # Pagination
 gem "bootstrap-kaminari-views"

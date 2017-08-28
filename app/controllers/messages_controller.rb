@@ -16,11 +16,11 @@ class MessagesController < ApplicationController
     end
 
     @messages = Message
-                  .basic_search(text: params[:q])
-                  .where(channel_id: searchable_channels_ids)
-                  .includes(:user, :channel, reactions: :users)
-                  .order(ts: :desc)
-                  .page(params[:page])
-                  .per(20)
+                    .where('text ~* :pattern', pattern: params[:q])
+                    .where(channel_id: searchable_channels_ids)
+                    .includes(:user, :channel, reactions: :users)
+                    .order(ts: :desc)
+                    .page(params[:page])
+                    .per(20)
   end
 end
