@@ -8,7 +8,7 @@
   .col-xs-12
     - if @messages.empty?
       There are no messages for your search term.
-    %table.table.table-striped#asdasd
+    %table.table.table-striped
       - @messages.each do |message|
         = render "application/message_tr", message: message, user: message.user, channel: message.channel
 .row
