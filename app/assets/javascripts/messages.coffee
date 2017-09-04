@@ -1,8 +1,8 @@
 do ($ = jQuery)->
   $(document).on "turbolinks:load",  ->
-    highlightText($("#query-text").data("query")) if $("#query-text").text().length > 0
+    highlightText($("#query-text").data("query").trim()) if $("#query-text").data("query").length > 0
 
   highlightText = (query) ->
+    regExp = new RegExp(query, "giu")
     $(".message-text").each (index, textElem) ->
-      regExp = new RegExp(query, "giu")
       $(textElem).html($(textElem).html().replace(regExp, "<span class='highlight-text'>\$&</span>"))

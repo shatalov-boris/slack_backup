@@ -13,7 +13,7 @@
           .input-group
             - if @channel
               = hidden_field_tag :channel_id, @channel.id
-            = text_field_tag :q, params[:q], class: "form-control", placeholder: "Search"
+            = text_field_tag :q, params[:q]&.strip, class: "form-control", placeholder: "Search"
             .input-group-btn
               = button_tag name: nil, class: "btn btn-default" do
                 %i.glyphicon.glyphicon-search
