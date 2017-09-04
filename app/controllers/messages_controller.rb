@@ -5,10 +5,10 @@ class MessagesController < ApplicationController
     searchable_channels_ids = current_user.channels.ids
 
     if params[:q].blank?
-      return redirect_to :back,
-                         fallback_location: root_path,
-                         notice: "You must specify search query."
+      flash[:notice] = "You must specify search query."
+      return redirect_back(fallback_location: root_path)
     end
+
     params[:q]&.strip!
 
     if params[:channel_id].present?
@@ -16,9 +16,8 @@ class MessagesController < ApplicationController
       if @channel.id.in?(searchable_channels_ids)
         searchable_channels_ids = @channel.id
       else
-        redirect_to :back,
-                    fallback_location: root_path,
-                    alert: "You are not member of this channel."
+        flash[:alert] = "You are not member of this channel."
+        return redirect_back(fallback_location: root_path)
       end
     end
 
