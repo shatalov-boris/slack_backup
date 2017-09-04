@@ -4,7 +4,11 @@ class MessagesController < ApplicationController
   def search
     searchable_channels_ids = current_user.channels.ids
 
-    return redirect_to :back, fallback_location: root_path, notice: "You must specify search query." if params[:q].blank?
+    if params[:q].blank?
+      return redirect_to :back,
+                         fallback_location: root_path,
+                         notice: "You must specify search query."
+    end
     params[:q]&.strip!
 
     if params[:channel_id].present?
@@ -12,12 +16,14 @@ class MessagesController < ApplicationController
       if @channel.id.in?(searchable_channels_ids)
         searchable_channels_ids = @channel.id
       else
-        redirect_to :back, fallback_location: root_path, alert: "You are not member of this channel."
+        redirect_to :back,
+                    fallback_location: root_path,
+                    alert: "You are not member of this channel."
       end
     end
 
     @messages = Message
-                  .where('text ~* :pattern', pattern: params[:q])
+                  .where("text ~* :pattern", pattern: params[:q])
                   .where(channel_id: searchable_channels_ids)
                   .includes(:user, :channel, reactions: :users)
                   .order(ts: :desc)

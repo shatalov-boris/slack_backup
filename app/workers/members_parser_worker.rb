@@ -6,8 +6,8 @@ class MembersParserWorker
     user = UserBuilder.from_api(user_info, team_id)
 
     unless user
-      return
       Rails.logger.info("[MembersParserWorker] Finished")
+      return
     end
 
     if user.new_record? || user.changed?

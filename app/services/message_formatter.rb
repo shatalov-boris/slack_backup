@@ -4,9 +4,11 @@
 # 1. Detect all sequences matching <(.*?)>
 # 2. Within those sequences, format content starting with #C as a channel link
 # 3. Within those sequences, format content starting with @U as a user link
-# 4. Within those sequences, format content starting with ! according to the rules for the special command.
+# 4. Within those sequences, format content starting with
+#    ! according to the rules for the special command.
 # 5. For remaining sequences, format as a link
-# 6. Once the format has been determined, check for a pipe - if present, use the text following the pipe as the link label
+# 6. Once the format has been determined, check for a pipe - if present, use
+#    the text following the pipe as the link label
 
 class MessageFormatter
   include ActionView::Helpers::TagHelper

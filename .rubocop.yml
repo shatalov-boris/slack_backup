@@ -30,5 +30,9 @@ Metrics/MethodLength:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+
 StringLiterals:
   EnforcedStyle: double_quotes

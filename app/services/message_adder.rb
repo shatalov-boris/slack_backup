@@ -4,7 +4,8 @@ class MessageAdder
       user = User.find_by(slack_id: message["user"])
 
       unless user
-        Rails.logger.info("[HistoryCrawlWorker] There is no User with slack_id = #{message['user']}")
+        Rails.logger.info("[HistoryCrawlWorker] There is no User " \
+                        "with slack_id = #{message['user']}")
         next
       end
 
