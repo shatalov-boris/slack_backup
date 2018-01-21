@@ -9,10 +9,11 @@ namespace :slack_backup do
   desc "parse members"
   task members_parse: :environment do
     Team.find_each do |team|
-      MembersParser.parse_all(team, team.users
-                                        .keep_if { |user| user.slack_access_token.present? }
-                                        .sample
-                                        .slack_access_token)
+      MembersParser.parse_all(team, team
+                                      .users
+                                      .where.not(slack_access_token: ["", nil])
+                                      .first
+                                      .slack_access_token)
     end
   end
 
