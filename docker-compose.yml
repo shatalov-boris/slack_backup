@@ -1,0 +1,49 @@
+version: '3'
+
+volumes:
+  db_data:
+  gems_data:
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ./script/docker/puma-start.sh
+    environment:
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/slack_backup
+      - gems_data:/gems
+    links:
+      - postgres
+      - redis
+    stdin_open: true
+    tty: true
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ./script/docker/sidekiq-start.sh
+    environment:
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - .:/slack_backup
+      - gems_data:/gems
+    links:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: develop
+      POSTGRES_PASSWORD: develop
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
