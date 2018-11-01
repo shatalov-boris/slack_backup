@@ -1,6 +1,4 @@
-class ChannelsController < ApplicationController
-  before_action :authenticate_user!
-
+class ChannelsController < AuthenticatedUserController
   def index
     @opened_channels = current_user
                          .channels

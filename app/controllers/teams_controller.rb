@@ -1,6 +1,4 @@
-class TeamsController < ApplicationController
-  before_action :authenticate_user!
-
+class TeamsController < AuthenticatedUserController
   def show
     @team = current_user.team
   end
