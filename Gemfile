@@ -7,9 +7,9 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 5.1.4"
+gem "rails", "~> 5.2.0"
 # Use postgresql as the database for Active Record
-gem "pg", "~> 0.21"
+gem "pg", "~> 1.1.0"
 # Use Puma as the app server
 gem "puma", "~> 3.11.0"
 # Bootstrap
@@ -25,8 +25,6 @@ gem "coffee-rails", "~> 4.2"
 gem "jquery-rails"
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem "turbolinks", "~> 5"
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "~> 2.5"
 # Storing ENV variable
 gem "figaro"
 
