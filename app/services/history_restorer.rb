@@ -9,6 +9,7 @@ class HistoryRestorer
 
       Dir.foreach(folder + json_channel["name"]) do |channel_file_name|
         next if (channel_file_name == ".") || (channel_file_name == "..")
+
         channel_json = File.read(folder + json_channel["name"] + channel_file_name)
         messages = JSON.parse(channel_json)
         MessageAdder.add(messages, channel)

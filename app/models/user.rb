@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   extend FriendlyId
   devise :database_authenticatable, :registerable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i(slack)
-  friendly_id :username, use: %i(slugged finders)
+         :omniauthable, omniauth_providers: %i[slack]
+  friendly_id :username, use: %i[slugged finders]
 
   belongs_to :team
   has_many :channel_members

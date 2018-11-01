@@ -12,7 +12,7 @@ class HistoryCrawlWorker
       return
     end
 
-    channel.update!(oldest_crawled: DateTime.current, latest_crawled: DateTime.current) if channel.oldest_crawled.nil?
+    channel.update!(oldest_crawled: Time.current, latest_crawled: Time.current) if channel.oldest_crawled.nil?
 
     crawl_by_oldest(channel, slack_access_token)
     crawl_by_latest(channel, slack_access_token)
@@ -45,7 +45,7 @@ class HistoryCrawlWorker
   end
 
   def crawl_by_latest(channel, slack_access_token)
-    now = DateTime.current
+    now = Time.current
 
     slack_api_client = SlackApiClient.new(slack_access_token)
     while channel.latest_crawled < now

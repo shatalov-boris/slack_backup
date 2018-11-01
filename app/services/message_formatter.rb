@@ -39,12 +39,14 @@ class MessageFormatter
   def user_link(text)
     user = User.find_by(slack_id: "U#{text.split('|')[0]}")
     return "" unless user
+
     content_tag(:a, "@#{user.username}", href: member_team_path(user))
   end
 
   def channel_link(text)
     channel = Channel.find_by(slack_id: "U#{text.split('|')[0]}")
     return "" unless channel
+
     content_tag(:a, "@#{channel.name}", href: channel_path(channel))
   end
 
@@ -62,7 +64,7 @@ class MessageFormatter
   def markup_format(message)
     # Bold
     message.gsub!(/[*](.*?)[*]/) do
-      %(<b>#{Regexp.last_match(1)}</b>)
+      %[<b>#{Regexp.last_match(1)}</b>]
     end
 
     # Italic
@@ -72,12 +74,12 @@ class MessageFormatter
 
     # Strike
     message.gsub!(/~(.*?)~/) do
-      %(<strike>#{Regexp.last_match(1)}</strike>)
+      %[<strike>#{Regexp.last_match(1)}</strike>]
     end
 
     # Code
     message.gsub(/`(.*?)`/) do
-      %(<code>#{Regexp.last_match(1)}</code>)
+      %[<code>#{Regexp.last_match(1)}</code>]
     end
   end
 end

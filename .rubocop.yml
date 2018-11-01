@@ -8,7 +8,7 @@ AllCops:
     - 'public/*'
     - 'tmp/*'
     - 'vendor/*'
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
 
 Documentation:
   Enabled: false
@@ -19,20 +19,23 @@ Layout/AlignHash:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented_relative_to_receiver
 
+Metrics/BlockLength:
+  Max: 30
+
+Metrics/MethodLength:
+  Max: 30
+
 Metrics/LineLength:
   Max: 100
   Exclude:
     - 'db/**/*'
-
-Metrics/MethodLength:
-  Max: 20
 
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
-    default: ()
+    default: "[]"
 
 StringLiterals:
   EnforcedStyle: double_quotes

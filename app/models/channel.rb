@@ -25,6 +25,7 @@ class Channel < ApplicationRecord
   def name(user = nil)
     if direct_message?
       raise "`user` parameter must be present to detect direct message channel name" unless user
+
       partner(user).name
     elsif group_message?
       users.map(&:name).join(", ")
@@ -36,18 +37,20 @@ class Channel < ApplicationRecord
   def partner(user)
     raise "`partner` can be only for direct message channel" unless direct_message?
     return user if users_count == 1
+
     users.to_a.detect { |ch_user| ch_user != user }
   end
 
   def user_with_access
     return creator if creator&.slack_access_token.present?
+
     users.detect { |user| user.slack_access_token.present? }
   end
 
   private
 
   def set_next_crawl_time
-    self.next_crawl_time = DateTime.current
+    self.next_crawl_time = Time.current
   end
 
   def creator
