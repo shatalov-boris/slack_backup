@@ -11,6 +11,6 @@ class TeamsController < AuthenticatedUserController
                   .includes(channel: :users, reactions: :users)
                   .order(ts: :desc)
                   .page(params[:page])
-                  .per(20)
+                  .per(MESSAGE::PER_PAGE)
   end
 end

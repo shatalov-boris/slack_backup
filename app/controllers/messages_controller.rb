@@ -25,6 +25,6 @@ class MessagesController < AuthenticatedUserController
                   .includes(:user, :channel, reactions: :users)
                   .order(ts: :desc)
                   .page(params[:page])
-                  .per(20)
+                  .per(MESSAGE::PER_PAGE)
   end
 end
