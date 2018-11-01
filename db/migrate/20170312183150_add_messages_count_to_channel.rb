@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddMessagesCountToChannel < ActiveRecord::Migration[5.0]
   def change
     change_table :channels do |t|

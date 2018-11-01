@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 every 1.day do
   rake "slack_backup:channels_parse"
 end

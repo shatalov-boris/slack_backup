@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChannelsParser
   def self.parse_all(user)
     slack_access_token = user.slack_access_token

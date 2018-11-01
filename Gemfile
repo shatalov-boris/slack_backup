@@ -54,6 +54,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "bullet"
+  gem "magic_frozen_string_literal", require: false
   gem "rubocop", require: false
 end
 

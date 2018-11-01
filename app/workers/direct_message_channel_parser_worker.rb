@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DirectMessageChannelParserWorker
   include Sidekiq::Worker
 

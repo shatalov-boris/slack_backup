@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChannelsController < AuthenticatedUserController
   def index
     @opened_channels = current_user

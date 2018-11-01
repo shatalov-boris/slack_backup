@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Message < ApplicationRecord
   PER_PAGE = 20
 

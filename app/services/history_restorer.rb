@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HistoryRestorer
   def self.restore(folder)
     channels_json = File.read(folder + "channels.json")

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # How to display formatted messages
 # https://api.slack.com/docs/message-formatting
 #

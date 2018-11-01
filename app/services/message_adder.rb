@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessageAdder
   def self.add(messages, channel)
     messages.each do |message|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Channel < ApplicationRecord
   belongs_to :team
   has_many :channel_members

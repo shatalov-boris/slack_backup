@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserBuilder
   def self.from_omniauth!(user_info, uid)
     User.find_or_initialize_by(slack_id: user_info.id) do |user|

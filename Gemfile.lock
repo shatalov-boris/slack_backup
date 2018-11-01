@@ -138,6 +138,7 @@ GEM
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    magic_frozen_string_literal (1.0.2)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
@@ -320,6 +321,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   kaminari
+  magic_frozen_string_literal
   newrelic_rpm
   omniauth-slack
   pg (~> 1.1.0)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChannelBuilder
   def self.build_from_json(json_channel, is_private = false)
     Channel.find_or_initialize_by(slack_id: json_channel["id"]) do |channel|

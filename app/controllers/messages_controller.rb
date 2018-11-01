@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessagesController < AuthenticatedUserController
   def search
     searchable_channels_ids = current_user.channels.ids

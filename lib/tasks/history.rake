@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :slack_backup do
   desc "parse channels"
   task channels_parse: :environment do

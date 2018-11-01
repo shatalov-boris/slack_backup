@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TeamsController < AuthenticatedUserController
   def show
     @team = current_user.team
