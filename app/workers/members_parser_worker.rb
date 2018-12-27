@@ -3,6 +3,8 @@
 class MembersParserWorker
   include Sidekiq::Worker
 
+  sidekiq_options queue: "slack_parser"
+
   def perform(user_info, team_id)
     Rails.logger.info("[MembersParserWorker] Started")
     user = UserBuilder.from_api(user_info, team_id)

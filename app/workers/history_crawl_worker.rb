@@ -3,6 +3,8 @@
 class HistoryCrawlWorker
   include Sidekiq::Worker
 
+  sidekiq_options queue: "slack_parser"
+
   def perform(channel_id)
     Rails.logger.info("[HistoryCrawlWorker] Started")
 

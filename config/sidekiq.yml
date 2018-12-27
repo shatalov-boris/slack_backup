@@ -1,0 +1,7 @@
+:pidfile: ./tmp/pids/sidekiq.pid
+:logfile: ./log/sidekiq.log
+:verbose: true
+:concurrency: 2
+:queues:
+  - default
+  - slack_parser

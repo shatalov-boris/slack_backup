@@ -3,6 +3,8 @@
 class DirectMessageChannelParserWorker
   include Sidekiq::Worker
 
+  sidekiq_options queue: "slack_parser"
+
   def perform(user_id, team_id, parsed_channel)
     Rails.logger.info("[ChannelParserWorker] Started")
 
