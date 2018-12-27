@@ -11,7 +11,11 @@
       There are no messages for your search term.
     %table.table.table-striped
       - @messages.each do |message|
-        = render "application/message_tr", message: message, user: message.user, channel: message.channel
+        = render "application/message_tr",
+                  message: message,
+                  user: message.user,
+                  channel: message.channel,
+                  link_to_channel: true
 .row
   .col-xs-12
     = paginate @messages, window: 3, theme: "twitter-bootstrap-3"

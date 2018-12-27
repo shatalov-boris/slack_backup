@@ -2,7 +2,10 @@
 %tr
   %td.username
     %img{src: user.avatar, class: "user-avatar"}
-    = user.name
+    - if defined?(link_to_channel) && link_to_channel
+      = link_to user.name, channel_path(channel)
+    - else
+      = user.name
   %td
     - if defined?(show_channel_info) && show_channel_info
       = link_to "In: #{channel.name(current_user)}", channel_path(channel)
