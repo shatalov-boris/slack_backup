@@ -1,5 +1,8 @@
-/log
-/tmp
+log/
+tmp/
+!log/.keep
+!tmp/.keep
+!tmp/pids/.keep
 /public/system
 
 ## Environment normalization:
