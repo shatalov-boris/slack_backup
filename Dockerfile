@@ -15,6 +15,11 @@ ENV GEM_HOME /gems
 ENV GEM_PATH /gems
 ENV BUNDLE_PATH /gems
 
-COPY . .
-
 RUN gem install bundler
+
+COPY Gemfile .
+COPY Gemfile.lock .
+
+RUN bundle install
+
+COPY . .
