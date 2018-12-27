@@ -8,7 +8,7 @@ class Message < ApplicationRecord
   has_many :reactions
 
   def page_in_channel
-    position = channel.messages.where("id <= ?", id).count
+    position = channel.messages.where("ts >= ?", ts).count
     (position.to_f / PER_PAGE).ceil
   end
 end
