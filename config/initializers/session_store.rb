@@ -2,4 +2,4 @@
 
 Rails.application.config.session_store :redis_store,
                                        servers: ENV["REDIS_URL"] + "/0/sessions",
-                                       expires_in: 3.days
+                                       expires_in: 6.months
