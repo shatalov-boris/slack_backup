@@ -30,7 +30,7 @@ class MessageFormatter
     mentions = @message.scan(/<!(.*?)>/)
     mentions.each { |mention| @message.gsub!("<!#{mention[0]}>", mention(mention[0])) }
 
-    links = @message.scan(/<https:\/\/(.*?)>/)
+    links = @message.scan(%r{<https://(.*?)>})
     links.each { |link| @message.gsub!("<https://#{link[0]}>", link("https://#{link[0]}")) }
 
     markup_format(@message).html_safe
