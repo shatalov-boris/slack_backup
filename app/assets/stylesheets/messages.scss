@@ -1,4 +1,11 @@
 span.highlight-text {
-  background-color:#FF9;
-  color:#555;
+  background-color: #FF9;
+  color: #555;
+}
+
+.table.table-striped {
+  tr.highlight-row {
+    background-color: #FF9;
+    color: #555;
+  }
 }

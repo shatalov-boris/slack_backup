@@ -1,9 +1,9 @@
 -# frozen_string_literal: true
-%tr
+%tr{id: dom_id(message)}
   %td.username
     %img{src: user.avatar, class: "user-avatar"}
     - if defined?(link_to_channel) && link_to_channel
-      = link_to user.name, channel_path(channel)
+      = link_to user.name, channel_path(channel, page: message.page_in_channel, highlight_id: message.id)
     - else
       = user.name
   %td

@@ -6,4 +6,9 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :channel, counter_cache: true
   has_many :reactions
+
+  def page_in_channel
+    position = channel.messages.where("id <= ?", id).count
+    (position.to_f / PER_PAGE).ceil
+  end
 end
