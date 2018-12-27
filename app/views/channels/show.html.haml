@@ -1,5 +1,5 @@
 -# frozen_string_literal: true
-%h2= @channel.name(current_user)
+%h2= "#{@channel.name(current_user)} (#{pluralize(@channel.messages_count, "message")})"
 
 = render "channels/paginator"
 .row
