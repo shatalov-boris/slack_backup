@@ -57,7 +57,3 @@ group :development do
   gem "magic_frozen_string_literal", require: false
   gem "rubocop", require: false
 end
-
-group :production do
-  gem "newrelic_rpm"
-end
