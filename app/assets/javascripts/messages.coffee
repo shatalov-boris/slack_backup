@@ -1,6 +1,6 @@
 do ($ = jQuery)->
   $(document).on "turbolinks:load",  ->
-    highlightText($("#query-text").data("query").trim()) if $("#query-text").data("query").length > 0
+    highlightText($("#query-text").data("query").trim()) if $("#query-text").data("query") && $("#query-text").data("query").length > 0
 
   highlightText = (query) ->
     regExp = new RegExp(query, "giu")
