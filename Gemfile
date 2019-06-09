@@ -56,4 +56,5 @@ group :development do
   gem "bullet"
   gem "magic_frozen_string_literal", require: false
   gem "rubocop", require: false
+  gem "rubocop-rails", require: false
 end

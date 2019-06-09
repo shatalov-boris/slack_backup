@@ -30,7 +30,7 @@ class HistoryCrawlWorker
   private
 
   def crawl_by_oldest(channel, slack_access_token)
-    epoch = Time.at(0)
+    epoch = Time.zone.at(0)
     slack_api_client = SlackApiClient.new(slack_access_token)
 
     while channel.oldest_crawled > epoch
@@ -40,7 +40,7 @@ class HistoryCrawlWorker
       if messages&.any?
         latest = messages[-1]["ts"]
         has_more = history["has_more"]
-        channel.oldest_crawled = has_more ? Time.at(latest.to_d) : epoch
+        channel.oldest_crawled = has_more ? Time.zone.at(latest.to_d) : epoch
         MessageAdder.add(messages, channel)
       else
         channel.oldest_crawled = epoch

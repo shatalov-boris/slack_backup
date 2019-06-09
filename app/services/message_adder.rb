@@ -12,9 +12,9 @@ class MessageAdder
       end
 
       new_message = user.messages.find_or_initialize_by(message_type: message["type"],
-                                                        ts: Time.at(message["ts"].to_d),
+                                                        ts: Time.zone.at(message["ts"].to_d),
                                                         channel: channel)
-      new_message.text = message["text"].present? ? message["text"] : ""
+      new_message.text = message["text"].presence || ""
       new_message.save! if new_message.new_record? || new_message.changed?
 
       message["reactions"]&.each do |reaction|
