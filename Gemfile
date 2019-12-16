@@ -9,52 +9,52 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.0"
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1.0"
+gem "pg", "~> 1.1"
 # Use Puma as the app server
-gem "puma", "~> 4.0.0"
+gem "puma", "~> 4.0"
 # Bootstrap
-gem "bootstrap-sass"
+gem "bootstrap-sass", "~> 3.4"
 # Use SCSS for stylesheets
-gem "sass-rails", "~> 5.0"
+gem "sass-rails", "~> 5.1"
 # Use Uglifier as compressor for JavaScript assets
-gem "uglifier", ">= 1.3.0"
+gem "uglifier", "~> 4.2"
 # Use CoffeeScript for .coffee assets and views
 gem "coffee-rails", "~> 5.0"
 
 # Use jquery as the JavaScript library
-gem "jquery-rails"
+gem "jquery-rails", "~> 4.3"
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem "turbolinks", "~> 5"
+gem "turbolinks", "~> 5.2"
 # Storing ENV variable
-gem "figaro"
+gem "figaro", "~> 1.1"
 
-gem "devise"
-gem "friendly_id" # Pretty urls
-gem "gemoji" # Emoji support
-gem "haml-rails"
-gem "omniauth-slack"
-gem "redis-rails"
-gem "rest-client", require: false
-gem "sidekiq"
-gem "whenever", require: false
+gem "devise", "~> 4.7"
+gem "friendly_id", "~> 5.3" # Pretty urls
+gem "gemoji", "~> 3.0" # Emoji support
+gem "haml-rails", "~> 2.0"
+gem "omniauth-slack", "~> 2.3"
+gem "redis-rails", "~> 5.0"
+gem "rest-client", "~> 2.1", require: false
+gem "sidekiq", "~> 6.0"
+gem "whenever", "~> 1.0", require: false
 
 # Pagination
-gem "bootstrap-kaminari-views"
-gem "kaminari"
+gem "bootstrap-kaminari-views", "~> 0.0"
+gem "kaminari", "~> 1.1"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "byebug", platform: :mri
-  gem "pry-rails"
+  gem "byebug", "~> 11.0", platform: :mri
+  gem "pry-rails", "~> 0.3"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring"
+  gem "spring", "~> 2.1"
 end
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
-  gem "bullet"
-  gem "magic_frozen_string_literal", require: false
-  gem "rubocop", require: false
-  gem "rubocop-rails", require: false
+  gem "better_errors", "~> 2.5"
+  gem "binding_of_caller", "~> 0.8"
+  gem "bullet", "~> 6.0"
+  gem "magic_frozen_string_literal", "~> 1.1", require: false
+  gem "rubocop", "~> 0.77", require: false
+  gem "rubocop-rails", "~> 2.4", require: false
 end

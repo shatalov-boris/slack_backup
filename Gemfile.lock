@@ -328,36 +328,36 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  better_errors
-  binding_of_caller
-  bootstrap-kaminari-views
-  bootstrap-sass
-  bullet
-  byebug
+  better_errors (~> 2.5)
+  binding_of_caller (~> 0.8)
+  bootstrap-kaminari-views (~> 0.0)
+  bootstrap-sass (~> 3.4)
+  bullet (~> 6.0)
+  byebug (~> 11.0)
   coffee-rails (~> 5.0)
-  devise
-  figaro
-  friendly_id
-  gemoji
-  haml-rails
-  jquery-rails
-  kaminari
-  magic_frozen_string_literal
-  omniauth-slack
-  pg (~> 1.1.0)
-  pry-rails
-  puma (~> 4.0.0)
+  devise (~> 4.7)
+  figaro (~> 1.1)
+  friendly_id (~> 5.3)
+  gemoji (~> 3.0)
+  haml-rails (~> 2.0)
+  jquery-rails (~> 4.3)
+  kaminari (~> 1.1)
+  magic_frozen_string_literal (~> 1.1)
+  omniauth-slack (~> 2.3)
+  pg (~> 1.1)
+  pry-rails (~> 0.3)
+  puma (~> 4.0)
   rails (~> 6.0)
-  redis-rails
-  rest-client
-  rubocop
-  rubocop-rails
-  sass-rails (~> 5.0)
-  sidekiq
-  spring
-  turbolinks (~> 5)
-  uglifier (>= 1.3.0)
-  whenever
+  redis-rails (~> 5.0)
+  rest-client (~> 2.1)
+  rubocop (~> 0.77)
+  rubocop-rails (~> 2.4)
+  sass-rails (~> 5.1)
+  sidekiq (~> 6.0)
+  spring (~> 2.1)
+  turbolinks (~> 5.2)
+  uglifier (~> 4.2)
+  whenever (~> 1.0)
 
 RUBY VERSION
    ruby 2.6.5p114
