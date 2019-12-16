@@ -11,11 +11,11 @@ gem "rails", "~> 6.0"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 # Use Puma as the app server
-gem "puma", "~> 4.0"
+gem "puma", "~> 4.3"
 # Bootstrap
 gem "bootstrap-sass", "~> 3.4"
 # Use SCSS for stylesheets
-gem "sass-rails", "~> 5.1"
+gem "sass-rails", "~> 6.0"
 # Use Uglifier as compressor for JavaScript assets
 gem "uglifier", "~> 4.2"
 # Use CoffeeScript for .coffee assets and views
