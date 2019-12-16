@@ -12,10 +12,7 @@ AllCops:
     - 'vendor/*'
   TargetRubyVersion: 2.6
 
-Documentation:
-  Enabled: false
-
-Layout/AlignHash:
+Layout/HashAlignment:
   Enabled: false
 
 Layout/MultilineMethodCallIndentation:
@@ -32,6 +29,9 @@ Metrics/LineLength:
   Exclude:
     - 'db/**/*'
 
+Style/Documentation:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
@@ -39,5 +39,5 @@ Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     default: "[]"
 
-StringLiterals:
+Style/StringLiterals:
   EnforcedStyle: double_quotes

@@ -16,7 +16,9 @@ class HistoryCrawlWorker
       return
     end
 
-    channel.update!(oldest_crawled: Time.current, latest_crawled: Time.current) if channel.oldest_crawled.nil?
+    if channel.oldest_crawled.nil?
+      channel.update!(oldest_crawled: Time.current, latest_crawled: Time.current)
+    end
 
     crawl_by_oldest(channel, slack_access_token)
     crawl_by_latest(channel, slack_access_token)
