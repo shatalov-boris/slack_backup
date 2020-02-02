@@ -3,7 +3,7 @@
 class HistoryRestorer
   def self.restore(folder)
     channels_json = File.read(folder + "channels.json")
-    channels = JSON.parse(channels_json)
+    channels = Oj.load(channels_json)
     channels.each do |json_channel|
       puts "Restoring #{json_channel['name']}"
       channel = ChannelBuilder.build_from_json(json_channel)
@@ -13,7 +13,7 @@ class HistoryRestorer
         next if (channel_file_name == ".") || (channel_file_name == "..")
 
         channel_json = File.read(folder + json_channel["name"] + channel_file_name)
-        messages = JSON.parse(channel_json)
+        messages = Oj.load(channel_json)
         MessageAdder.add(messages, channel)
       end
       puts "Restoring for #{json_channel['name']} has finished"

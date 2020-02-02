@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rest-client"
-
 class SlackApiClient
   def initialize(slack_access_token)
     @client_id = ENV["SLACK_CLIENT_ID"]
@@ -11,22 +9,22 @@ class SlackApiClient
 
   def team_members
     response = RestClient.get(api_url("users.list"))
-    JSON.parse(response.body)["members"]
+    Oj.load(response.body)["members"]
   end
 
   def public_channels
     response = RestClient.get(api_url("channels.list"))
-    JSON.parse(response.body)["channels"]
+    Oj.load(response.body)["channels"]
   end
 
   def private_channels
     response = RestClient.get(api_url("groups.list"))
-    JSON.parse(response.body)["groups"]
+    Oj.load(response.body)["groups"]
   end
 
   def direct_messages
     response = RestClient.get(api_url("im.list"))
-    JSON.parse(response.body)["ims"]
+    Oj.load(response.body)["ims"]
   end
 
   def channel_history(channel, options = {})
@@ -49,7 +47,7 @@ class SlackApiClient
     end
 
     response = RestClient.get(url)
-    JSON.parse(response.body)
+    Oj.load(response.body)
   end
 
   private
