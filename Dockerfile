@@ -1,11 +1,8 @@
-FROM ruby:2.6.3
+FROM ruby:2.6.5-alpine3.11
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y \
-    libpq-dev build-essential libgmp3-dev postgresql-client \
-    ruby-dev pkg-config clang libtool libc6-dev libxml2-dev \
-    libxslt-dev gcc make zlib1g-dev clang nodejs
+RUN apk --no-cache --update add xz-libs build-base postgresql-dev libxslt-dev libxml2-dev gcompat libc6-compat \
+                                bash libcurl tzdata git
+RUN apk upgrade
 
 ENV INSTALL_PATH /slack_backup
 RUN mkdir -p $INSTALL_PATH
@@ -15,6 +12,7 @@ ENV GEM_HOME /gems
 ENV GEM_PATH /gems
 ENV BUNDLE_PATH /gems
 
+RUN gem update --system
 RUN gem install bundler
 
 COPY Gemfile .
