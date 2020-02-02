@@ -7,10 +7,10 @@ class Channel < ApplicationRecord
              foreign_key: "creator_slack_id",
              primary_key: "slack_id",
              optional: true
-  has_many :channel_members
+  has_many :channel_members, dependent: :destroy
   has_many :users, through: :channel_members
-  has_many :messages
-  has_many :reactions
+  has_many :messages, dependent: :destroy
+  has_many :reactions, dependent: :destroy
 
   after_initialize :set_next_crawl_time, unless: :next_crawl_time
 

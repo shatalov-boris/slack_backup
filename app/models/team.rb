@@ -2,5 +2,5 @@
 
 class Team < ApplicationRecord
   has_many :users, dependent: :destroy
-  has_many :channels
+  has_many :channels, dependent: :destroy
 end
