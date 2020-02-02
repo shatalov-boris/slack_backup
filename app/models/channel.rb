@@ -2,6 +2,11 @@
 
 class Channel < ApplicationRecord
   belongs_to :team
+  belongs_to :creator,
+             class_name: "User",
+             foreign_key: "creator_slack_id",
+             primary_key: "slack_id",
+             optional: true
   has_many :channel_members
   has_many :users, through: :channel_members
   has_many :messages
@@ -53,9 +58,5 @@ class Channel < ApplicationRecord
 
   def set_next_crawl_time
     self.next_crawl_time = Time.current
-  end
-
-  def creator
-    User.find_by(slack_id: creator_slack_id)
   end
 end
