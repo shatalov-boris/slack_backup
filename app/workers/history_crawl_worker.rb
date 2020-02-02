@@ -61,11 +61,7 @@ class HistoryCrawlWorker
       history = slack_api_client.channel_history(channel, latest: true)
       messages = history["messages"]
 
-      if messages&.any?
-        MessageAdder.add(messages, channel)
-      else
-        channel.latest_crawled = now
-      end
+      MessageAdder.add(messages, channel) if messages&.any?
     end
   end
 end
