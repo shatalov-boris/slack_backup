@@ -15,8 +15,8 @@ module Users
       @user.save!
 
       if @user.persisted?
-        MembersParser.parse_all(team, slack_info.credentials.token)
-        ChannelsParser.parse_all(@user)
+        MembersParser.new.call(team, slack_info.credentials.token)
+        ChannelsParser.new.call(@user)
         sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
         set_flash_message(:notice, :success, kind: "Slack") if is_navigational_format?
       else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_02_172916) do
+ActiveRecord::Schema.define(version: 2020_02_02_185051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,10 +33,7 @@ ActiveRecord::Schema.define(version: 2020_02_02_172916) do
     t.string "creator_slack_id", null: false
     t.integer "channel_type", null: false
     t.integer "status", null: false
-    t.integer "next_crawl_cycle", default: 1
-    t.datetime "next_crawl_time"
     t.datetime "latest_crawled"
-    t.datetime "oldest_crawled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "messages_count", default: 0

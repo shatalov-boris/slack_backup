@@ -4,18 +4,18 @@ namespace :slack_backup do
   desc "parse channels"
   task channels_parse: :environment do
     User.find_each do |user|
-      ChannelsParser.parse_all(user)
+      ChannelsParser.new.call(user)
     end
   end
 
   desc "parse members"
   task members_parse: :environment do
     Team.find_each do |team|
-      MembersParser.parse_all(team, team
-                                      .users
-                                      .where.not(slack_access_token: ["", nil])
-                                      .first
-                                      .slack_access_token)
+      MembersParser.new.call(team, team
+                                     .users
+                                     .where.not(slack_access_token: ["", nil])
+                                     .first
+                                     .slack_access_token)
     end
   end
 

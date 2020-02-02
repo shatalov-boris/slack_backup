@@ -12,8 +12,6 @@ class Channel < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :reactions, dependent: :destroy
 
-  after_initialize :set_next_crawl_time, unless: :next_crawl_time
-
   enum status: {
     opened: 0,
     archived: 1
@@ -52,11 +50,5 @@ class Channel < ApplicationRecord
     return creator if creator&.slack_access_token.present?
 
     users.detect { |user| user.slack_access_token.present? }
-  end
-
-  private
-
-  def set_next_crawl_time
-    self.next_crawl_time = Time.current
   end
 end

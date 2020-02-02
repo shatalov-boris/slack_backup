@@ -16,55 +16,25 @@ class HistoryCrawlWorker
       return
     end
 
-    if channel.oldest_crawled.nil?
-      channel.update!(oldest_crawled: Time.current, latest_crawled: Time.current)
-    end
+    channel.latest_crawled = Time.zone.at(0) unless channel.latest_crawled
+    slack_api_client = SlackApiClient.new(slack_access_token)
 
-    crawl_by_oldest(channel, slack_access_token)
-    crawl_by_latest(channel, slack_access_token)
+    history = add_messages(channel, slack_api_client)
+    history = add_messages(channel, slack_api_client, history["response_metadata"]&.dig("next_cursor")) while history["has_more"]
 
-    channel.next_crawl_time += channel.next_crawl_cycle.hours
-    channel.save!
+    channel.update!(latest_crawled: Time.current)
 
     Rails.logger.info("[HistoryCrawlWorker] Finished for Channel ID = #{channel.id}")
   end
 
   private
 
-  def crawl_by_oldest(channel, slack_access_token)
-    epoch = Time.zone.at(0)
-    slack_api_client = SlackApiClient.new(slack_access_token)
+  def add_messages(channel, slack_api_client, cursor = nil)
+    history = slack_api_client.channel_history(channel, cursor)
 
-    while channel.oldest_crawled > epoch
-      history = slack_api_client.channel_history(channel, oldest: true)
-      messages = history["messages"]
+    messages = history["messages"]
+    MessageAdder.add(messages, channel) if messages&.any?
 
-      if messages&.any?
-        latest = messages[-1]["ts"]
-        has_more = history["has_more"]
-        channel.oldest_crawled = has_more ? Time.zone.at(latest.to_d) : epoch
-        MessageAdder.add(messages, channel)
-      else
-        channel.oldest_crawled = epoch
-      end
-
-      channel.save! if channel.changed?
-    end
-  end
-
-  def crawl_by_latest(channel, slack_access_token)
-    now = Time.current
-
-    slack_api_client = SlackApiClient.new(slack_access_token)
-    while channel.latest_crawled < now
-      channel.latest_crawled += 12.hours
-      channel.latest_crawled = now if channel.latest_crawled > now
-      channel.save! if channel.changed?
-
-      history = slack_api_client.channel_history(channel, latest: true)
-      messages = history["messages"]
-
-      MessageAdder.add(messages, channel) if messages&.any?
-    end
+    history
   end
 end
