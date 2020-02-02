@@ -3,17 +3,20 @@
 class MessageAdder
   def self.add(messages, channel)
     messages.each do |message|
-      user = User.find_by(slack_id: message["user"])
+      user_id = Rails.cache.fetch([:user_id_by_slack_id, message["user"]], expires_in: 1.month) do
+        User.find_by(slack_id: message["user"])&.id
+      end
 
-      unless user
+      unless user_id
         Rails.logger.info("[HistoryCrawlWorker] There is no User " \
                         "with slack_id = #{message['user']}")
         next
       end
 
-      new_message = user.messages.find_or_initialize_by(message_type: message["type"],
-                                                        ts: Time.zone.at(message["ts"].to_d),
-                                                        channel: channel)
+      new_message = Message.find_or_initialize_by(user_id: user_id,
+                                                  message_type: message["type"],
+                                                  ts: Time.zone.at(message["ts"].to_d),
+                                                  channel: channel)
       new_message.text = message["text"].presence || ""
       new_message.save! if new_message.new_record? || new_message.changed?
 
