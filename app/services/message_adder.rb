@@ -8,15 +8,15 @@ class MessageAdder
       end
 
       unless user_id
-        Rails.logger.info("[HistoryCrawlWorker] There is no User " \
-                        "with slack_id = #{message['user']}")
+        Rails.logger.info("[HistoryCrawlWorker] There is no User with slack_id = #{message['user']}")
         next
       end
 
-      new_message = Message.find_or_initialize_by(user_id: user_id,
-                                                  message_type: message["type"],
-                                                  ts: Time.zone.at(message["ts"].to_d),
-                                                  channel: channel)
+      new_message = channel
+                      .messages
+                      .find_or_initialize_by(user_id: user_id,
+                                             message_type: message["type"],
+                                             ts: Time.zone.at(message["ts"].to_d))
       new_message.text = message["text"].presence || ""
       new_message.save! if new_message.new_record? || new_message.changed?
 
