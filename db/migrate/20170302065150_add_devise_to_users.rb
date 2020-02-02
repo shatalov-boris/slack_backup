@@ -2,17 +2,13 @@
 
 class AddDeviseToUsers < ActiveRecord::Migration[5.0]
   def self.up
-    change_table :users do |t|
-      ## Database authenticatable
-      t.string :encrypted_password, null: false, default: ""
+    add_column :users, :encrypted_password, :string
+    change_column_default :users, :encrypted_password, from: nil, to: ""
+    safety_assured { change_column_null :users, :encrypted_password, false }
 
-      ## Rememberable
-      t.datetime :remember_created_at
-
-      ## Omniauth
-      t.string :provider
-      t.string :uid
-    end
+    add_column :users, :remember_created_at, :datetime
+    add_column :users, :provider, :string
+    add_column :users, :uid, :string
   end
 
   def self.down

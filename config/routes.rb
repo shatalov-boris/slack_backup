@@ -18,5 +18,6 @@ Rails.application.routes.draw do
 
   authenticate :user, ->(u) { u.email == ENV["ADMIN_EMAIL"] } do
     mount Sidekiq::Web => "/sidekiq"
+    mount PgHero::Engine, at: "pghero"
   end
 end

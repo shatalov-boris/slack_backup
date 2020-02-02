@@ -2,12 +2,11 @@
 
 class AddMessagesCountToChannel < ActiveRecord::Migration[5.0]
   def change
-    change_table :channels do |t|
-      t.integer :messages_count, default: 0
-    end
+    add_column :channels, :messages_count, :integer
+    change_column_default :channels, :messages_count, from: nil, to: 0
 
     reversible do |dir|
-      dir.up { data }
+      safety_assured { dir.up { data } }
     end
   end
 

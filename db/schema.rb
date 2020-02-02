@@ -1,18 +1,16 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_03_15_080206) do
+ActiveRecord::Schema.define(version: 2020_02_02_165343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +74,26 @@ ActiveRecord::Schema.define(version: 2017_03_15_080206) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "pghero_query_stats", force: :cascade do |t|
+    t.text "database"
+    t.text "user"
+    t.text "query"
+    t.bigint "query_hash"
+    t.float "total_time"
+    t.bigint "calls"
+    t.datetime "captured_at"
+    t.index ["database", "captured_at"], name: "index_pghero_query_stats_on_database_and_captured_at"
+  end
+
+  create_table "pghero_space_stats", force: :cascade do |t|
+    t.text "database"
+    t.text "schema"
+    t.text "relation"
+    t.bigint "size"
+    t.datetime "captured_at"
+    t.index ["database", "captured_at"], name: "index_pghero_space_stats_on_database_and_captured_at"
+  end
+
   create_table "reactions", id: :serial, force: :cascade do |t|
     t.integer "message_id", null: false
     t.text "name", null: false
@@ -126,4 +144,13 @@ ActiveRecord::Schema.define(version: 2017_03_15_080206) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "channel_members", "channels", name: "channel_members_channel_id_fk"
+  add_foreign_key "channel_members", "users", name: "channel_members_user_id_fk"
+  add_foreign_key "channels", "teams", name: "channels_team_id_fk"
+  add_foreign_key "messages", "channels", name: "messages_channel_id_fk"
+  add_foreign_key "messages", "users", name: "messages_user_id_fk"
+  add_foreign_key "reactions", "messages", name: "reactions_message_id_fk"
+  add_foreign_key "user_reactions", "reactions", name: "user_reactions_reaction_id_fk"
+  add_foreign_key "user_reactions", "users", name: "user_reactions_user_id_fk"
+  add_foreign_key "users", "teams", name: "users_team_id_fk"
 end

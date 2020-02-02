@@ -2,12 +2,11 @@
 
 class AddUsersCountToReaction < ActiveRecord::Migration[5.0]
   def change
-    change_table :reactions do |t|
-      t.integer :users_count, default: 0
-    end
+    add_column :reactions, :users_count, :integer
+    change_column_default :reactions, :users_count, from: nil, to: 0
 
     reversible do |dir|
-      dir.up { data }
+      safety_assured { dir.up { data } }
     end
   end
 

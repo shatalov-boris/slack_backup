@@ -42,6 +42,10 @@ gem "whenever", "~> 1.0", require: false
 gem "bootstrap-kaminari-views", "~> 0.0"
 gem "kaminari", "~> 1.1"
 
+gem "pg_query", "~> 1.2"
+gem "pghero", "~> 2.4"
+gem "strong_migrations", "~> 0.5"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", "~> 11.0", platform: :mri
