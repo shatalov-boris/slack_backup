@@ -4,8 +4,10 @@ class Message < ApplicationRecord
   PER_PAGE = 20
 
   belongs_to :user
-  belongs_to :channel, counter_cache: true
+  belongs_to :channel
   has_many :reactions
+
+  counter_culture :channel
 
   def page_in_channel
     position = channel.messages.where("ts >= ?", ts).count

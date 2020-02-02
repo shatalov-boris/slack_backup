@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.0"
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.2"
 # Use Puma as the app server
 gem "puma", "~> 4.3"
 # Bootstrap
@@ -42,13 +42,15 @@ gem "whenever", "~> 1.0", require: false
 gem "bootstrap-kaminari-views", "~> 0.0"
 gem "kaminari", "~> 1.1"
 
+gem "counter_culture", "~> 2.2"
+
 gem "pg_query", "~> 1.2"
 gem "pghero", "~> 2.4"
-gem "strong_migrations", "~> 0.5"
+gem "strong_migrations", "~> 0.6"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "byebug", "~> 11.0", platform: :mri
+  gem "byebug", "~> 11.1", platform: :mri
   gem "pry-rails", "~> 0.3"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring", "~> 2.1"
@@ -57,8 +59,8 @@ end
 group :development do
   gem "better_errors", "~> 2.5"
   gem "binding_of_caller", "~> 0.8"
-  gem "bullet", "~> 6.0"
+  gem "bullet", "~> 6.1"
   gem "magic_frozen_string_literal", "~> 1.1", require: false
-  gem "rubocop", "~> 0.77", require: false
+  gem "rubocop", "~> 0.79", require: false
   gem "rubocop-rails", "~> 2.4", require: false
 end
