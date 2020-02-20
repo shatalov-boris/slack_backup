@@ -12,7 +12,7 @@ class SlackApiClient
     url += "&cursor=#{cursor}" if cursor
 
     response = RestClient.get(url)
-    JSON.load(response.body)
+    Oj.load(response.body)
   end
 
   def conversations_list(types: nil, cursor: nil)
@@ -21,7 +21,7 @@ class SlackApiClient
     url += "&cursor=#{cursor}" if cursor
 
     response = RestClient.get(url)
-    JSON.load(response.body)
+    Oj.load(response.body)
   end
 
   def channel_history(channel, cursor = nil)
@@ -30,7 +30,7 @@ class SlackApiClient
     url += "&cursor=#{cursor}" if cursor
 
     response = RestClient.get(url)
-    JSON.load(response.body)
+    Oj.load(response.body)
   end
 
   private
