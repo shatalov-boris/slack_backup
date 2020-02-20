@@ -34,7 +34,7 @@ gem "gemoji", "~> 3.0" # Emoji support
 gem "haml-rails", "~> 2.0"
 gem "omniauth-slack", "~> 2.3"
 gem "redis-rails", "~> 5.0"
-gem "rest-client", "~> 2.1", require: false
+gem "rest-client", "~> 2.1"
 gem "sidekiq", "~> 6.0"
 gem "whenever", "~> 1.0", require: false
 
