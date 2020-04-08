@@ -60,7 +60,7 @@ GEM
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
     ast (2.4.0)
-    autoprefixer-rails (9.7.5)
+    autoprefixer-rails (9.7.6)
       execjs
     bcrypt (3.1.13)
     better_errors (2.6.0)
@@ -338,21 +338,21 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  better_errors (~> 2.5)
+  better_errors (~> 2.6)
   binding_of_caller (~> 0.8)
   bootstrap-kaminari-views (~> 0.0)
   bootstrap-sass (~> 3.4)
   bullet (~> 6.1)
   byebug (~> 11.1)
   coffee-rails (~> 5.0)
-  counter_culture (~> 2.2)
+  counter_culture (~> 2.3)
   devise (~> 4.7)
   figaro (~> 1.1)
   friendly_id (~> 5.3)
   gemoji (~> 3.0)
   haml-rails (~> 2.0)
   jquery-rails (~> 4.3)
-  kaminari (~> 1.1)
+  kaminari (~> 1.2)
   magic_frozen_string_literal (~> 1.1)
   oj (~> 3.10)
   omniauth-slack (~> 2.3)
@@ -364,8 +364,8 @@ DEPENDENCIES
   rails (~> 6.0)
   redis-rails (~> 5.0)
   rest-client (~> 2.1)
-  rubocop (~> 0.79)
-  rubocop-rails (~> 2.4)
+  rubocop (~> 0.81)
+  rubocop-rails (~> 2.5)
   sass-rails (~> 6.0)
   sidekiq (~> 6.0)
   spring (~> 2.1)
@@ -375,7 +375,7 @@ DEPENDENCIES
   whenever (~> 1.0)
 
 RUBY VERSION
-   ruby 2.6.5p114
+   ruby 2.6.6p146
 
 BUNDLED WITH
    2.1.4

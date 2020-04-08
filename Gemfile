@@ -40,9 +40,9 @@ gem "whenever", "~> 1.0", require: false
 
 # Pagination
 gem "bootstrap-kaminari-views", "~> 0.0"
-gem "kaminari", "~> 1.1"
+gem "kaminari", "~> 1.2"
 
-gem "counter_culture", "~> 2.2"
+gem "counter_culture", "~> 2.3"
 
 gem "pg_query", "~> 1.2"
 gem "pghero", "~> 2.4"
@@ -59,10 +59,10 @@ group :development, :test do
 end
 
 group :development do
-  gem "better_errors", "~> 2.5"
+  gem "better_errors", "~> 2.6"
   gem "binding_of_caller", "~> 0.8"
   gem "bullet", "~> 6.1"
   gem "magic_frozen_string_literal", "~> 1.1", require: false
-  gem "rubocop", "~> 0.79", require: false
-  gem "rubocop-rails", "~> 2.4", require: false
+  gem "rubocop", "~> 0.81", require: false
+  gem "rubocop-rails", "~> 2.5", require: false
 end
