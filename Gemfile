@@ -45,7 +45,7 @@ gem "kaminari", "~> 1.2"
 gem "counter_culture", "~> 2.3"
 
 gem "pg_query", "~> 1.2"
-gem "pghero", "~> 2.4"
+gem "pghero", "~> 2.7"
 gem "strong_migrations", "~> 0.6"
 
 gem "oj", "~> 3.10"
