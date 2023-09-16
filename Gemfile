@@ -35,7 +35,7 @@ gem "haml-rails", "~> 2.0"
 gem "omniauth-slack", "~> 2.3"
 gem "redis-rails", "~> 5.0"
 gem "rest-client", "~> 2.1"
-gem "sidekiq", "~> 6.0"
+gem "sidekiq", "~> 7.1"
 gem "whenever", "~> 1.0", require: false
 
 # Pagination
